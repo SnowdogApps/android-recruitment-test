@@ -1,9 +1,9 @@
 package dog.snow.androidrecruittest.db
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import dog.snow.androidrecruittest.models.Item
 
 @Database(entities = arrayOf(Item::class), version = 1)
@@ -16,13 +16,13 @@ abstract class SDDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(SDDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            SDDatabase::class.java, "weather.db")
+                            SDDatabase::class.java, "SDDatabase.db")
                             .build()
                 }
             }
             return INSTANCE
         }
-s
+
         fun destroyInstance() {
             INSTANCE = null
         }
