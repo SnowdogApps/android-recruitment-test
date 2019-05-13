@@ -9,6 +9,8 @@ import dog.snow.androidrecruittest.models.Item
 @Database(entities = arrayOf(Item::class), version = 1)
 abstract class SDDatabase : RoomDatabase() {
 
+    abstract fun getItemDao():SDDBDao
+
     companion object {
         private var INSTANCE: SDDatabase? = null
 
