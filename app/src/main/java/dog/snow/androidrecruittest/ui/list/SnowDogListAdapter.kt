@@ -10,33 +10,39 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.models.Item
+import java.util.*
+import kotlin.collections.ArrayList
 
-class SDListAdapter(val context:Context) : RecyclerView.Adapter<SDListAdapter.SDViewHolder>() {
+class SnowDogListAdapter(val context: Context) : RecyclerView.Adapter<SnowDogListAdapter.SDViewHolder>() {
 
-    lateinit var itemList:List<Item>
+    var itemList: List<Item> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SDViewHolder {
-        return SDViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view,parent))
+        return SDViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view, parent, false))
     }
 
     override fun getItemCount(): Int {
-       return itemList.size
+        return itemList.size
     }
 
     override fun onBindViewHolder(holder: SDViewHolder, position: Int) {
         holder.onBind(itemList.get(position))
     }
 
-    fun setItemList(list:ArrayList<Item>) {
+    fun setItemList(list: ArrayList<Item>) {
         itemList = list
         notifyDataSetChanged()
     }
 
+    fun clearList() {
+        itemList = listOf()
+        notifyDataSetChanged()
+    }
 
     class SDViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        var itemImg:ImageView = view.findViewById(R.id.item_avatar)
-        var itemTitle:TextView = view.findViewById(R.id.item_title)
-        var itemDescription:TextView = view.findViewById(R.id.item_description)
+        var itemImg: ImageView = view.findViewById(R.id.item_avatar)
+        var itemTitle: TextView = view.findViewById(R.id.item_title)
+        var itemDescription: TextView = view.findViewById(R.id.item_description)
 
         fun onBind(item: Item) {
             itemTitle.text = item.name

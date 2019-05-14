@@ -7,24 +7,24 @@ import androidx.room.RoomDatabase
 import dog.snow.androidrecruittest.models.Item
 
 @Database(entities = arrayOf(Item::class), version = 1, exportSchema = false)
-abstract class SDDatabase : RoomDatabase() {
+abstract class SnowDogDatabase : RoomDatabase() {
 
     abstract fun getItemDao(): SnowDogDao
 
     companion object {
         @Volatile
-        private var INSTANCE: SDDatabase? = null
+        private var INSTANCE: SnowDogDatabase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = INSTANCE ?: synchronized(LOCK) {
             INSTANCE ?: getInstance(context).also { INSTANCE = it }
         }
 
-        fun getInstance(context: Context): SDDatabase? {
+        fun getInstance(context: Context): SnowDogDatabase? {
             if (INSTANCE == null) {
-                synchronized(SDDatabase::class) {
+                synchronized(SnowDogDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context,
-                            SDDatabase::class.java, "SDDatabase.db")
+                            SnowDogDatabase::class.java, "SnowDogDatabase.db")
                             .build()
                 }
             }
