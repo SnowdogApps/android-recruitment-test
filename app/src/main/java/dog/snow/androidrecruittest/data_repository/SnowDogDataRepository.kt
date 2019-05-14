@@ -1,6 +1,7 @@
 package dog.snow.androidrecruittest.data_repository
 
 import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dog.snow.androidrecruittest.api.SDRetrofitApi
@@ -19,13 +20,17 @@ class SnowDogDataRepository(val context: Context) {
     private var itemList: MutableLiveData<List<Item>> = MutableLiveData()
 
 
-
     fun initDB() {
-        db = SDDatabase.getInstance(this.context)!!
+        if(!::db.isInitialized) {
+            db = SDDatabase.getInstance(this.context)!!
+        }
     }
 
     fun initConnection() {
-        api = SDRetrofitApi.create()
+        if(!::api.isInitialized) {
+            api = SDRetrofitApi.create()
+        }
+        loadData()
     }
 
     fun loadData() {
@@ -38,7 +43,7 @@ class SnowDogDataRepository(val context: Context) {
                         db.getItemDao().insertAll(response.body()!!)
                         itemList = db.getItemDao().getAll()
                     } else {
-
+                        Toast.makeText(context, "Connection error: " + response.errorBody(),Toast.LENGTH_LONG).show()
                     }
                 } catch (e: Exception) {
                     e.localizedMessage
@@ -47,7 +52,7 @@ class SnowDogDataRepository(val context: Context) {
         }
     }
 
-    fun getItems(): LiveData<List<Item>> {
+    fun getItems(): MutableLiveData<List<Item>> {
         return itemList
     }
 }

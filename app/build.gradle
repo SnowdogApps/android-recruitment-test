@@ -33,6 +33,10 @@ dependencies {
     def room_version = "2.1.0-alpha07"
 
 
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
@@ -40,7 +44,9 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
     annotationProcessor 'androidx.annotation:annotation:1.1.0-rc01'
+    kapt "android.arch.lifecycle:compiler:1.1.1"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
@@ -58,6 +64,5 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
     implementation "androidx.room:room-ktx:$room_version"
 
-    //picasso
-    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }

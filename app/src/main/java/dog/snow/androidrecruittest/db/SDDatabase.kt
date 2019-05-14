@@ -17,14 +17,13 @@ abstract class SDDatabase : RoomDatabase() {
         fun getInstance(context: Context): SDDatabase? {
             if (INSTANCE == null) {
                 synchronized(SDDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                    INSTANCE = Room.databaseBuilder(context,
                             SDDatabase::class.java, "SDDatabase.db")
                             .build()
                 }
             }
             return INSTANCE
         }
-
         fun destroyInstance() {
             INSTANCE = null
         }
