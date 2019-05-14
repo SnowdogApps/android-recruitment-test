@@ -42,7 +42,7 @@ class ListFragment : Fragment(), ListContract.View {
             listAdapter.setItemList(it as ArrayList<Item>)
         })
 
-        swipe_to_refresh.visibility = View.INVISIBLE
+//        swipe_to_refresh.visibility = View.INVISIBLE
 
 
     }

@@ -41,7 +41,7 @@ class SnowDogDataRepository(val context: Context) {
                     var response = request.await()
                     if (response.isSuccessful) {
                         db.getItemDao().insertAll(response.body()!!)
-                        itemList = db.getItemDao().getAll()
+                        itemList = db.getItemDao().getAll() as MutableLiveData<List<Item>>
                     } else {
                         Toast.makeText(context, "Connection error: " + response.errorBody(),Toast.LENGTH_LONG).show()
                     }

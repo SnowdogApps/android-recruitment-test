@@ -12,8 +12,8 @@ class SnowDogViewModel(application: Application) :AndroidViewModel(application){
     lateinit var itemList: MutableLiveData<List<Item>>
     init {
         repository = SnowDogDataRepository(application.applicationContext)
-//        repository.initDB()
-//        repository.initConnection()
-//        itemList = repository.getItems()
+        repository.initDB()
+        repository.initConnection()
+        itemList = repository.getItems()
     }
 }

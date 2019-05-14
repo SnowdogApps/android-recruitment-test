@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(SnowDogViewModel.class);
-        SDDatabase.Companion.getInstance(this);
+//        SDDatabase.Companion.getInstance(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.conteiner_fragment,new ListFragment()).commit();
     }
 }
