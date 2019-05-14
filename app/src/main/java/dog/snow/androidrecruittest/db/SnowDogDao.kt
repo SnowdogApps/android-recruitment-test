@@ -7,15 +7,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import dog.snow.androidrecruittest.models.Item
 
 
 @Dao
-interface SDDBDao {
+interface SnowDogDao {
 
     @Query("SELECT * from SnowDogItem")
-    fun getAll():MutableLiveData<List<Item>>
+    fun getAll(): LiveData<List<Item>>
 
     @Insert(onConflict = REPLACE)
     fun insert(item: Item)
@@ -23,6 +22,6 @@ interface SDDBDao {
     @Insert(onConflict = REPLACE)
     fun insertAll(item: List<Item>)
 
-    @Query("DELETE from snowdogitem")
+    @Query("DELETE from SnowDogItem")
     fun deleteAll()
 }

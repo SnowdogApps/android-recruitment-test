@@ -9,11 +9,11 @@ import dog.snow.androidrecruittest.models.Item
 class SnowDogViewModel(application: Application) :AndroidViewModel(application){
 
    private var repository:SnowDogDataRepository
-    var itemList: MutableLiveData<List<Item>>
+    lateinit var itemList: MutableLiveData<List<Item>>
     init {
         repository = SnowDogDataRepository(application.applicationContext)
-        repository.initDB()
-        repository.initConnection()
-        itemList = repository.getItems()
+//        repository.initDB()
+//        repository.initConnection()
+//        itemList = repository.getItems()
     }
 }

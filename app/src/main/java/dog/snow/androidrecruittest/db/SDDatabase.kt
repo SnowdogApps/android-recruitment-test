@@ -6,13 +6,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import dog.snow.androidrecruittest.models.Item
 
-@Database(entities = arrayOf(Item::class), version = 1)
+@Database(entities = arrayOf(Item::class), version = 1, exportSchema = false)
 abstract class SDDatabase : RoomDatabase() {
 
-    abstract fun getItemDao():SDDBDao
+    abstract fun getItemDao(): SnowDogDao
 
     companion object {
+        @Volatile
         private var INSTANCE: SDDatabase? = null
+        private val LOCK = Any()
+
+        operator fun invoke(context: Context) = INSTANCE ?: synchronized(LOCK) {
+            INSTANCE ?: getInstance(context).also { INSTANCE = it }
+        }
 
         fun getInstance(context: Context): SDDatabase? {
             if (INSTANCE == null) {
@@ -24,6 +30,7 @@ abstract class SDDatabase : RoomDatabase() {
             }
             return INSTANCE
         }
+
         fun destroyInstance() {
             INSTANCE = null
         }

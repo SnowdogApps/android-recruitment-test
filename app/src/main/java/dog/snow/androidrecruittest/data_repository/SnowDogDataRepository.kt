@@ -22,7 +22,7 @@ class SnowDogDataRepository(val context: Context) {
 
     fun initDB() {
         if(!::db.isInitialized) {
-            db = SDDatabase.getInstance(this.context)!!
+            db = SDDatabase.getInstance(context)!!
         }
     }
 
