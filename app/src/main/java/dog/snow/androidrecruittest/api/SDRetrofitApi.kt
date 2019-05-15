@@ -11,7 +11,7 @@ import retrofit2.http.GET
 
 interface SDRetrofitApi {
 
-    @GET("/api/list")
+    @GET("/api/items")
     fun getDataFromServer(): Deferred<Response<List<Item>>>
 
     companion object {

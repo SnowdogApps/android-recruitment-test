@@ -19,7 +19,9 @@
             android:layout_height="wrap_content"
             android:maxWidth="200dp"
             android:layout_weight="1"
+            android:background="@drawable/image_frame"
             android:src="@drawable/ic_android_mock"
+            android:scaleType="fitCenter"
             android:layout_margin="8dp"/>
         <LinearLayout
             android:layout_width="wrap_content"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/gariend_background"
     tools:context=".ui.list.SnowDogListFragment">
 
     <EditText
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="8dp"
-        android:background="@drawable/drawable_round_edit_file"
+        android:background="@drawable/drawable_round_text_view"
         android:gravity="center"
         android:hint="@string/search_hint"
         android:inputType="text"

@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.models.Item
-import java.util.*
 import kotlin.collections.ArrayList
+
 
 class SnowDogListAdapter(val context: Context) : RecyclerView.Adapter<SnowDogListAdapter.SDViewHolder>() {
 
@@ -47,7 +47,8 @@ class SnowDogListAdapter(val context: Context) : RecyclerView.Adapter<SnowDogLis
         fun onBind(item: Item) {
             itemTitle.text = item.name
             itemDescription.text = item.description
-            Picasso.get().load(item.urlIcon).into(itemImg)
+            Picasso.get().load(item.icon).into(itemImg)
         }
     }
+
 }

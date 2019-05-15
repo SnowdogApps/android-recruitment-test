@@ -40,11 +40,12 @@ class SnowDogListFragment : Fragment(), SnowDogListContract.View, SwipeRefreshLa
     }
 
     private fun initView() {
-        search_edit_frame.setOnEditorActionListener{ textView, keyCode, keyEvent ->
+        search_edit_frame.setOnEditorActionListener { textView, keyCode, keyEvent ->
             val DONE = 0
 
             if (keyCode == DONE) {
                 presenterSnowDog.searchDB(textView.text.toString())
+                searchUpdate()
             }
             true
         }
@@ -66,11 +67,25 @@ class SnowDogListFragment : Fragment(), SnowDogListContract.View, SwipeRefreshLa
     }
 
     override fun updateView() {
-        presenterSnowDog.getViewModel().getItemList().observe(this, Observer<List<Item>> {
-            listAdapter.clearList()
-            listAdapter.setItemList(it as ArrayList<Item>)
-            swipe_to_refresh.isRefreshing =false
+        presenterSnowDog.getViewModel().getItemList().observe(this, object : Observer<List<Item>> {
+            override fun onChanged(t: List<Item>?) {
+                updateAfterSearch(t!!)
+            }
         })
+    }
+
+    override fun searchUpdate() {
+        presenterSnowDog.getViewModel().getSearchResult().observe(this, object : Observer<List<Item>> {
+            override fun onChanged(t: List<Item>?) {
+                updateAfterSearch(t!!)
+            }
+        })
+    }
+
+    private fun updateAfterSearch(search: List<Item>) {
+//        listAdapter.clearList()
+        listAdapter.setItemList(search as ArrayList<Item>)
+        swipe_to_refresh.isRefreshing = false
     }
 
 }

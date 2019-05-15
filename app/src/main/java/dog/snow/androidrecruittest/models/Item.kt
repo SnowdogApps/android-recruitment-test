@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 
 @Entity(indices = arrayOf(Index(value = ["userid"], unique = true)))
-data class Item(@PrimaryKey(autoGenerate = true) var _id: Long, @ColumnInfo(name = "userid") var id: String, var name: String, var description: String, var icon: String, var timestamp: String, var urlIcon: String) {
+data class Item(@PrimaryKey(autoGenerate = true) var _id: Long, @ColumnInfo(name = "userid") var id: String, var name: String, var description: String, var icon: String, var timestamp: String) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -18,7 +18,6 @@ data class Item(@PrimaryKey(autoGenerate = true) var _id: Long, @ColumnInfo(name
         if (name != other.name) return false
         if (description != other.description) return false
         if (icon != other.icon) return false
-        if (urlIcon != other.urlIcon) return false
 
         return true
     }
@@ -29,7 +28,6 @@ data class Item(@PrimaryKey(autoGenerate = true) var _id: Long, @ColumnInfo(name
         result = 31 * result + description.hashCode()
         result = 31 * result + icon.hashCode()
         result = 31 * result + timestamp.hashCode()
-        result = 31 * result + urlIcon.hashCode()
         return result
     }
 }

@@ -13,17 +13,17 @@ import dog.snow.androidrecruittest.models.Item
 @Dao
 interface SnowDogDao {
 
-    @Query("SELECT * from Item")
-    fun getAll(): LiveData<List<Item>>
+//    @Query("SELECT * from Item")
+//    fun getAll(): LiveData<List<Item>>
 
-    @Query("SELECT * FROM Item WHERE name LIKE '%'||:search||'%' OR description LIKE '%'||:search||'%'")
-    fun getSearch(search:String): LiveData<List<Item>>
+    @Query("SELECT * FROM Item WHERE name LIKE :search OR description LIKE :search")
+    fun getAll(search:String="%"): LiveData<List<Item>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(item: Item)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(item: List<Item>)
+    fun insertAll(item: List<Item>?)
 
     @Query("DELETE from Item")
     fun deleteAll()

@@ -29,7 +29,7 @@ class SnowDogListPresenter : SnowDogListContract.Presenter {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.searchDB(search)
             withContext(Dispatchers.Main) {
-                view.updateView()
+                view.searchUpdate()
             }
         }
 //        view.updateView()
