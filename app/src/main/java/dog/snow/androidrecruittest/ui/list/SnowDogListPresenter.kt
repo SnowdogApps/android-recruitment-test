@@ -5,6 +5,7 @@ import dog.snow.androidrecruittest.data_repository.SnowDogViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SnowDogListPresenter : SnowDogListContract.Presenter {
 
@@ -27,8 +28,12 @@ class SnowDogListPresenter : SnowDogListContract.Presenter {
     fun searchDB(search: String) {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.searchDB(search)
-            view.updateView()
+            withContext(Dispatchers.Main) {
+                view.updateView()
+            }
         }
+//        view.updateView()
+
     }
 
     fun getViewModel(): SnowDogViewModel {

@@ -41,12 +41,12 @@ class SnowDogListFragment : Fragment(), SnowDogListContract.View, SwipeRefreshLa
 
     private fun initView() {
         search_edit_frame.setOnEditorActionListener{ textView, keyCode, keyEvent ->
-            val DONE = 6
+            val DONE = 0
 
             if (keyCode == DONE) {
                 presenterSnowDog.searchDB(textView.text.toString())
             }
-            false
+            true
         }
         recycler = conteiner_item
         listAdapter = SnowDogListAdapter(context!!)
@@ -67,8 +67,9 @@ class SnowDogListFragment : Fragment(), SnowDogListContract.View, SwipeRefreshLa
 
     override fun updateView() {
         presenterSnowDog.getViewModel().getItemList().observe(this, Observer<List<Item>> {
+            listAdapter.clearList()
             listAdapter.setItemList(it as ArrayList<Item>)
-            swipe_to_refresh.visibility= INVISIBLE1
+            swipe_to_refresh.isRefreshing =false
         })
     }
 

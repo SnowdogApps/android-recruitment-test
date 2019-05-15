@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import dog.snow.androidrecruittest.api.SDRetrofitApi
 import dog.snow.androidrecruittest.db.SnowDogDatabase
 import dog.snow.androidrecruittest.models.Item
@@ -66,6 +67,7 @@ class SnowDogDataRepository(val context: Context) {
 
             withContext(Dispatchers.Default) {
                 try {
+
                         itemList = db.getItemDao().getSearch(search)
                         Log.d(TAG, "searchDao: dbResult ")
 

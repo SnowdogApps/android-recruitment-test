@@ -16,7 +16,7 @@ interface SnowDogDao {
     @Query("SELECT * from Item")
     fun getAll(): LiveData<List<Item>>
 
-    @Query("SELECT * FROM Item WHERE name LIKE :search OR description LIKE :search")
+    @Query("SELECT * FROM Item WHERE name LIKE '%'||:search||'%' OR description LIKE '%'||:search||'%'")
     fun getSearch(search:String): LiveData<List<Item>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -27,4 +27,7 @@ interface SnowDogDao {
 
     @Query("DELETE from Item")
     fun deleteAll()
+
+//    @Query("SELECT 1 from Item")
+//    fun getEmpty(): LiveData<List<Item>>
 }
