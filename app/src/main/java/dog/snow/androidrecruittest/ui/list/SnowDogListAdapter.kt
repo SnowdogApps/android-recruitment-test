@@ -1,6 +1,7 @@
 package dog.snow.androidrecruittest.ui.list
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,9 @@ class SnowDogListAdapter(val context: Context) : RecyclerView.Adapter<SnowDogLis
             itemTitle.text = item.name
             itemDescription.text = item.description
             Picasso.get().load(item.icon).into(itemImg)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                itemImg.clipToOutline = true
+            }
         }
     }
 
