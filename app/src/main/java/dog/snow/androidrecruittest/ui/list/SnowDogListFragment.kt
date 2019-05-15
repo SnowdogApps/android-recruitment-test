@@ -2,7 +2,6 @@ package dog.snow.androidrecruittest.ui.list
 
 
 import android.os.Bundle
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.data_repository.SnowDogViewModel
 import dog.snow.androidrecruittest.models.Item
 import kotlinx.android.synthetic.main.fragment_list.*
-import java.nio.file.WatchEvent
 import android.view.View.INVISIBLE as INVISIBLE1
+import android.view.animation.AnimationUtils
+import dog.snow.androidrecruittest.R
+
 
 class SnowDogListFragment : Fragment(), SnowDogListContract.View, SwipeRefreshLayout.OnRefreshListener {
 
@@ -53,11 +53,8 @@ class SnowDogListFragment : Fragment(), SnowDogListContract.View, SwipeRefreshLa
         listAdapter = SnowDogListAdapter(context!!)
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.adapter = listAdapter
-        presenterSnowDog.getViewModel().getItemList().observe(this, Observer<List<Item>> {
-            listAdapter.setItemList(it as ArrayList<Item>)
-        })
-
-//        swipe_to_refresh.visibility = View.INVISIBLE
+        recycler.layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.fall_down_animation)
+        updateView()
         swipe_to_refresh.setOnRefreshListener(this)
     }
 
@@ -86,6 +83,7 @@ class SnowDogListFragment : Fragment(), SnowDogListContract.View, SwipeRefreshLa
 //        listAdapter.clearList()
         listAdapter.setItemList(search as ArrayList<Item>)
         swipe_to_refresh.isRefreshing = false
+        recycler.scheduleLayoutAnimation()
     }
 
 }
