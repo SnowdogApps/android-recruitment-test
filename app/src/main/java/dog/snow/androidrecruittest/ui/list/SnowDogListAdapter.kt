@@ -35,11 +35,6 @@ class SnowDogListAdapter(val context: Context) : RecyclerView.Adapter<SnowDogLis
         notifyDataSetChanged()
     }
 
-    fun clearList() {
-        itemList = listOf()
-        notifyDataSetChanged()
-    }
-
     class SDViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         var itemImg: ImageView = view.findViewById(R.id.item_avatar)
         var itemTitle: TextView = view.findViewById(R.id.item_title)
@@ -48,7 +43,11 @@ class SnowDogListAdapter(val context: Context) : RecyclerView.Adapter<SnowDogLis
         fun onBind(item: Item) {
             itemTitle.text = item.name
             itemDescription.text = item.description
-            Picasso.get().load(item.icon).into(itemImg)
+            if (item.icon.isNotBlank()) {
+                Picasso.get().load(item.icon).into(itemImg)
+            } else {
+                Picasso.get().load(R.drawable.ic_android_mock).into(itemImg)
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 itemImg.clipToOutline = true
             }

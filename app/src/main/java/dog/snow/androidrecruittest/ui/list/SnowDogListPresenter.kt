@@ -23,6 +23,7 @@ class SnowDogListPresenter : SnowDogListContract.Presenter {
 
     override fun loadData() {
         viewModel.loadData()
+        view.updateView()
     }
 
     fun searchDB(search: String) {

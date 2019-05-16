@@ -2,6 +2,7 @@ package dog.snow.androidrecruittest.ui.list
 
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +44,7 @@ class SnowDogListFragment : Fragment(), SnowDogListContract.View, SwipeRefreshLa
         search_edit_frame.setOnEditorActionListener { textView, keyCode, keyEvent ->
             val DONE = 0
 
-            if (keyCode == DONE) {
+            if (keyEvent.action.equals(KeyEvent.ACTION_DOWN) || keyEvent.action.equals(KeyEvent.ACTION_UP)) {
                 presenterSnowDog.searchDB(textView.text.toString())
                 searchUpdate()
             }
@@ -54,19 +55,18 @@ class SnowDogListFragment : Fragment(), SnowDogListContract.View, SwipeRefreshLa
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.adapter = listAdapter
         recycler.layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.fall_down_animation)
-        updateView()
         swipe_to_refresh.setOnRefreshListener(this)
+        presenterSnowDog.loadData()
     }
 
     override fun onRefresh() {
         presenterSnowDog.loadData()
-        updateView()
     }
 
     override fun updateView() {
         presenterSnowDog.getViewModel().getItemList().observe(this, object : Observer<List<Item>> {
             override fun onChanged(t: List<Item>?) {
-                updateAfterSearch(t!!)
+                setUpdateInfo(t!!)
             }
         })
     }
@@ -74,16 +74,15 @@ class SnowDogListFragment : Fragment(), SnowDogListContract.View, SwipeRefreshLa
     override fun searchUpdate() {
         presenterSnowDog.getViewModel().getSearchResult().observe(this, object : Observer<List<Item>> {
             override fun onChanged(t: List<Item>?) {
-                updateAfterSearch(t!!)
+                setUpdateInfo(t!!)
             }
         })
     }
 
-    private fun updateAfterSearch(search: List<Item>) {
-//        listAdapter.clearList()
+    private fun setUpdateInfo(search: List<Item>) {
         listAdapter.setItemList(search as ArrayList<Item>)
         swipe_to_refresh.isRefreshing = false
-        recycler.scheduleLayoutAnimation()
+//        recycler.scheduleLayoutAnimation()
     }
 
 }
