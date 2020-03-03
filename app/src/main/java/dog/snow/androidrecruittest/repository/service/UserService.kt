@@ -10,4 +10,5 @@ interface UserService {
     @GET("users/{id}")
     fun getUsers(@Path("id") userId: Int): Call<List<RawUser>>
 
+
 }
