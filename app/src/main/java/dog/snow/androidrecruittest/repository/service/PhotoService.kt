@@ -1,7 +1,13 @@
 package dog.snow.androidrecruittest.repository.service
 
-import dog.snow.androidrecruittest.repository.model.RawPhoto
+import dog.snow.androidrecruittest.repository.model.RawAlbum
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface PhotoService {
+
+    @GET("albums/{id}")
+    fun getAlbums(@Path("id") albumId: Int): Call<List<RawAlbum>>
 
 }
