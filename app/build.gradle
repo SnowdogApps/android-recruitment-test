@@ -45,8 +45,10 @@ android {
 
 def roomVersion = '2.2.5'
 def retrofitVersion = '2.3.0'
-def rxJavaVersion = '2.2.9'
+def rxJavaVersion = '3.0.0'
 def lifecycleVersion = "2.2.0"
+def rxAndroidVersion = '3.0.0'
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -67,8 +69,8 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 
-    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
-    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
+    implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
 
