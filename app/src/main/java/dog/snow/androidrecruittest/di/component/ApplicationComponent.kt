@@ -6,13 +6,17 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import dog.snow.androidrecruittest.di.ApplicationController
-import dog.snow.androidrecruittest.di.module.ActivityModule
+import dog.snow.androidrecruittest.di.module.*
 import javax.inject.Singleton
 
 @Component(
     modules = [
         AndroidInjectionModule::class,
-        ActivityModule::class
+        ActivityModule::class,
+        FragmentModule::class,
+        NetworkModule::class,
+        ViewModelModule::class,
+        RepositoryModule::class
     ]
 )
 @Singleton
