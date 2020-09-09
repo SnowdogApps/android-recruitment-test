@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dog.snow.androidrecruittest.ui.common.view_model.ViewModelFactory
-import javax.inject.Singleton
 
 @Module
 interface ViewModelModule {
