@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import dog.snow.androidrecruittest.di.key.ViewModelKey
 import dog.snow.androidrecruittest.ui.common.view_model.ViewModelFactory
-import dog.snow.androidrecruittest.ui.splash.SplashViewModel
+import dog.snow.androidrecruittest.ui.page.splash.SplashViewModel
 
 @Module
 interface ViewModelModule {
