@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name="dog.snow.androidrecruittest.ui.page.main.MainActivity" />
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name="dog.snow.androidrecruittest.ui.page.splash.SplashActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.SplashTheme">
             <intent-filter>

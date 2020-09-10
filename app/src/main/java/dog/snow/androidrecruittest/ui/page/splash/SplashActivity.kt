@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.ui.splash
+package dog.snow.androidrecruittest.ui.page.splash
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

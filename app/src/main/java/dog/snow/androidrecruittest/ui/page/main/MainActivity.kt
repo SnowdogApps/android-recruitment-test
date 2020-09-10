@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.ui.main
+package dog.snow.androidrecruittest.ui.page.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

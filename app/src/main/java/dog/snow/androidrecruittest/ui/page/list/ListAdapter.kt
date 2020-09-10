@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.ui.list
+package dog.snow.androidrecruittest.ui.page.list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dog.snow.androidrecruittest.R
-import dog.snow.androidrecruittest.data.model.ListItem
+import dog.snow.androidrecruittest.ui.model.ListItem
 
 class ListAdapter(private val onClick: (item: ListItem, position: Int, view: View) -> Unit) :
     androidx.recyclerview.widget.ListAdapter<ListItem, ListAdapter.ViewHolder>(
