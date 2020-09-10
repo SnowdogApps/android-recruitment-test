@@ -4,7 +4,9 @@ import android.app.Application
 import com.fasterxml.jackson.databind.ObjectMapper
 import dagger.Module
 import dagger.Provides
+import dog.snow.androidrecruittest.data.source.remote.service.AlbumService
 import dog.snow.androidrecruittest.data.source.remote.service.PhotoService
+import dog.snow.androidrecruittest.data.source.remote.service.UserService
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -53,6 +55,14 @@ class NetworkModule {
     @Provides
     @Singleton
     fun providePhotoService(retrofit: Retrofit): PhotoService = retrofit.create(PhotoService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAlbumService(retrofit: Retrofit): AlbumService = retrofit.create(AlbumService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserService(retrofit: Retrofit): UserService = retrofit.create(UserService::class.java)
 
 
     companion object {

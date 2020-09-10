@@ -1,6 +1,5 @@
 package dog.snow.androidrecruittest.ui.page.splash
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dog.snow.androidrecruittest.data.model.photo.RawPhoto
@@ -27,7 +26,7 @@ class SplashViewModel @Inject constructor(
     fun fetchPhotos() {
         disposable.add(remoteRepository.fetchPhotos()
             .subscribe(
-                {},
+                { photos.value = it },
                 {}
             )
         )
