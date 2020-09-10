@@ -4,6 +4,7 @@ import android.app.Application
 import com.fasterxml.jackson.databind.ObjectMapper
 import dagger.Module
 import dagger.Provides
+import dog.snow.androidrecruittest.data.source.remote.service.PhotoService
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,9 +19,7 @@ class NetworkModule {
     
     @Provides
     @Singleton
-    fun provideJacksonMapper(): ObjectMapper {
-        return ObjectMapper()
-    }
+    fun provideJacksonMapper(): ObjectMapper = ObjectMapper()
 
     @Provides
     @Singleton
@@ -43,14 +42,18 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(mapper: ObjectMapper, httpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
+    fun provideRetrofit(mapper: ObjectMapper, httpClient: OkHttpClient): Retrofit = Retrofit.Builder()
             .addConverterFactory(JacksonConverterFactory.create(mapper))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl(BASE_URL)
             .client(httpClient)
             .build()
-    }
+
+
+    @Provides
+    @Singleton
+    fun providePhotoService(retrofit: Retrofit): PhotoService = retrofit.create(PhotoService::class.java)
+
 
     companion object {
         private const val HTTP_CACHE_NAME = "http-cache"
