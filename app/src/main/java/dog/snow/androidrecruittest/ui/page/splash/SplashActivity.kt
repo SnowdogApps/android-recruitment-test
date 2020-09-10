@@ -7,6 +7,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.android.AndroidInjection
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.ui.common.view_model.ViewModelFactory
+import dog.snow.androidrecruittest.utils.subscribe
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
@@ -26,6 +27,9 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun setupViewModel() {
         splashViewModel = ViewModelProvider(this, viewModelFactory)[SplashViewModel::class.java]
+        splashViewModel.photos.subscribe(this) {
+            println(it)
+        }
     }
 
     private fun showError(errorMessage: String?) {
