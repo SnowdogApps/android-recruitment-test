@@ -35,8 +35,8 @@ class ListAdapter(private val onClick: (item: ListItem, position: Int, view: Vie
             val ivThumb: ImageView = findViewById(R.id.iv_thumb)
             val tvTitle: TextView = findViewById(R.id.tv_photo_title)
             val tvAlbumTitle: TextView = findViewById(R.id.tv_album_title)
-            tvTitle.text = item.title
-            tvAlbumTitle.text = item.albumTitle
+            tvTitle.text = item.title.value
+            tvAlbumTitle.text = item.albumTitle.value
             //TODO: display item.thumbnailUrl in ivThumb
             setOnClickListener { onClick(item, adapterPosition, this) }
         }

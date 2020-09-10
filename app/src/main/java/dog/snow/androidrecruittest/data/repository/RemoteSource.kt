@@ -17,7 +17,7 @@ class RemoteSource @Inject constructor(
     override fun fetchPhotos(): Observable<Resource<List<RawPhoto>>> = photoService
         .fetchPhotos(PhotoLimit(PHOTO_LIMIT))
         .subscribeOn(Schedulers.io())
-        .switchMap {Observable.just(Resource.create(it))}
+        .switchMap { Observable.just(Resource.create(it)) }
         .observeOn(AndroidSchedulers.mainThread())
 
     companion object {
