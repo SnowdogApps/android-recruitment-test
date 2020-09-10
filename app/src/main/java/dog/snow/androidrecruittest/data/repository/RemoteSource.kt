@@ -1,8 +1,13 @@
 package dog.snow.androidrecruittest.data.repository
 
+import dog.snow.androidrecruittest.data.model.album.RawAlbum
+import dog.snow.androidrecruittest.data.model.common.Id
 import dog.snow.androidrecruittest.data.model.photo.RawPhoto
+import dog.snow.androidrecruittest.data.model.user.RawUser
 import dog.snow.androidrecruittest.data.source.remote.Resource
+import dog.snow.androidrecruittest.data.source.remote.service.AlbumService
 import dog.snow.androidrecruittest.data.source.remote.service.PhotoService
+import dog.snow.androidrecruittest.data.source.remote.service.UserService
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -11,10 +16,23 @@ import javax.inject.Singleton
 
 @Singleton
 class RemoteSource @Inject constructor(
-    private val photoService: PhotoService
+    private val photoService: PhotoService,
+    private val albumService: AlbumService,
+    private val userService: UserService
 ) : RemoteRepository {
+
     override fun fetchPhotos(): Observable<Resource<List<RawPhoto>>> = photoService
         .fetchPhotos(PHOTO_LIMIT)
+        .subscribeOn(Schedulers.io())
+        .switchMap { Observable.just(Resource.create(it)) }
+        .observeOn(AndroidSchedulers.mainThread())
+
+    override fun fetchAlbum(id: Id): Observable<Resource<RawAlbum>> = albumService.fetchAlbum(id)
+        .subscribeOn(Schedulers.io())
+        .switchMap { Observable.just(Resource.create(it)) }
+        .observeOn(AndroidSchedulers.mainThread())
+
+    override fun fetchUser(id: Id): Observable<Resource<RawUser>> = userService.fetchUser(id)
         .subscribeOn(Schedulers.io())
         .switchMap { Observable.just(Resource.create(it)) }
         .observeOn(AndroidSchedulers.mainThread())
