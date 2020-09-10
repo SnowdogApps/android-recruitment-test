@@ -3,7 +3,7 @@ package dog.snow.androidrecruittest.di.module
 import androidx.fragment.app.ListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import dog.snow.androidrecruittest.ui.details.DetailsFragment
+import dog.snow.androidrecruittest.ui.page.details.DetailsFragment
 
 @Module
 interface FragmentModule {
