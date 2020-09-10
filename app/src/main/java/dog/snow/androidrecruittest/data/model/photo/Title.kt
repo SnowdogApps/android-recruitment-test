@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.data.model.album
+package dog.snow.androidrecruittest.data.model.photo
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
