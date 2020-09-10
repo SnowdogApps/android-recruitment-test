@@ -1,10 +1,9 @@
-package dog.snow.androidrecruittest.ui.splash
+package dog.snow.androidrecruittest.ui.page.splash
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
 import dog.snow.androidrecruittest.R
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity) {

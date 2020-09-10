@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.ui.base.model
+package dog.snow.androidrecruittest.ui.model
 
 import android.os.Parcelable
 import dog.snow.androidrecruittest.data.model.common.Id
