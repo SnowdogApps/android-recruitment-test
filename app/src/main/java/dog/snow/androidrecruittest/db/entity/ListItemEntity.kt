@@ -1,9 +1,10 @@
-package dog.snow.androidrecruittest.repository.service
+package dog.snow.androidrecruittest.db.entity
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import dog.snow.androidrecruittest.repository.service.DbConstans
 
 @Entity
 data class ListItemEntity(

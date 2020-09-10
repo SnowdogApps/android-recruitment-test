@@ -1,10 +1,10 @@
-package dog.snow.androidrecruittest.repository
+package dog.snow.androidrecruittest.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import dog.snow.androidrecruittest.repository.service.ListItemEntity
+import dog.snow.androidrecruittest.db.entity.ListItemEntity
 import io.reactivex.Single
 
 @Dao
