@@ -1,6 +1,5 @@
 package dog.snow.androidrecruittest.repository.service
 
-import dog.snow.androidrecruittest.repository.model.ItemsLocalRepository
 import io.reactivex.Single
 
 class ListItems constructor(
