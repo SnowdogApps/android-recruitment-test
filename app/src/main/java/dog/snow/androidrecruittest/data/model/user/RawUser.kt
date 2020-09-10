@@ -12,7 +12,7 @@ import kotlinx.android.parcel.Parcelize
 data class RawUser(
     val id: Id,
     val name: Name,
-    val username: UserName,
+    val username: Username,
     val email: Email,
     val address: RawAddress,
     val phone: Phone,

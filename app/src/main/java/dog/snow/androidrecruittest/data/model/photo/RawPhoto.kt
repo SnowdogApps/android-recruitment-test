@@ -2,6 +2,7 @@ package dog.snow.androidrecruittest.data.model.photo
 
 import android.os.Parcelable
 import dog.snow.androidrecruittest.data.model.common.Id
+import dog.snow.androidrecruittest.data.model.common.Title
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
