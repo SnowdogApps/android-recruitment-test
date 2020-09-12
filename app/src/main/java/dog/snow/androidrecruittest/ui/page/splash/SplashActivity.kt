@@ -27,8 +27,8 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun setupViewModel() {
         splashViewModel = ViewModelProvider(this, viewModelFactory)[SplashViewModel::class.java]
-        splashViewModel.photos.subscribe(this) {
-            println(it)
+        splashViewModel.fetchDataState.subscribe(this) {
+            
         }
     }
 

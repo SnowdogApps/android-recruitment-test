@@ -41,8 +41,8 @@ class NetworkModule {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(timeoutInterceptor)
-            .readTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
-            .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
+            .readTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+            .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .cache(cache)
             .build()
     }
@@ -73,7 +73,7 @@ class NetworkModule {
     companion object {
         private const val HTTP_CACHE_NAME = "http-cache"
         private const val BASE_URL = "https://jsonplaceholder.typicode.com"
-        private const val CONNECTION_TIMEOUT = 1L
+        private const val CONNECTION_TIMEOUT = 3L
     }
 
 }

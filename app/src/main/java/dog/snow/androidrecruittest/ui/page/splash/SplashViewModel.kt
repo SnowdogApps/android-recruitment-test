@@ -1,6 +1,7 @@
 package dog.snow.androidrecruittest.ui.page.splash
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dog.snow.androidrecruittest.data.repository.RemoteRepository
@@ -11,8 +12,8 @@ import javax.inject.Inject
 class SplashViewModel @Inject constructor(
     private val remoteRepository: RemoteRepository
 ) : ViewModel() {
-    private val _photos = MutableLiveData<Resource<Void>>()
-    val photos get() = _photos
+    private val _fetchDataState = MutableLiveData<Resource<Void>>()
+    val fetchDataState: LiveData<Resource<Void>> get() = _fetchDataState
 
     init {
         fetchData()
@@ -24,10 +25,18 @@ class SplashViewModel @Inject constructor(
     }
 
     fun fetchData() {
+        Log.i(TAG, "Fetch data - start. ")
+        _fetchDataState.value = Resource.Loading(null)
         disposable.add(remoteRepository.fetchData()
             .subscribe(
-                { photos.value = it },
-                { Log.e(TAG, "Fetch data - error. ", it)}
+                {
+                    _fetchDataState.value = it
+                    Log.i(TAG, "Fetch data - finished.")
+                },
+                {
+                    _fetchDataState.value = Resource.create(it)
+                    Log.e(TAG, "Fetch data - error. ", it)
+                }
             )
         )
     }
