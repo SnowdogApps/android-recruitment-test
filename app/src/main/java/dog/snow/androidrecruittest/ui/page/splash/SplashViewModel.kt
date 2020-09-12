@@ -11,7 +11,7 @@ import javax.inject.Inject
 class SplashViewModel @Inject constructor(
     private val remoteRepository: RemoteRepository
 ) : ViewModel() {
-    private val _photos = MutableLiveData<Resource<List<RawPhoto>>>()
+    private val _photos = MutableLiveData<Resource<Void>>()
     val photos get() = _photos
 
     init {
@@ -24,7 +24,7 @@ class SplashViewModel @Inject constructor(
     }
 
     fun fetchPhotos() {
-        disposable.add(remoteRepository.fetchPhotos()
+        disposable.add(remoteRepository.fetchData()
             .subscribe(
                 { photos.value = it },
                 {}

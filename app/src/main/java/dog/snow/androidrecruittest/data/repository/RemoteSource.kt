@@ -1,7 +1,6 @@
 package dog.snow.androidrecruittest.data.repository
 
 import dog.snow.androidrecruittest.data.model.album.RawAlbum
-import dog.snow.androidrecruittest.data.model.common.Id
 import dog.snow.androidrecruittest.data.model.photo.RawPhoto
 import dog.snow.androidrecruittest.data.model.user.RawUser
 import dog.snow.androidrecruittest.data.source.remote.Resource
@@ -9,7 +8,9 @@ import dog.snow.androidrecruittest.data.source.remote.service.AlbumService
 import dog.snow.androidrecruittest.data.source.remote.service.PhotoService
 import dog.snow.androidrecruittest.data.source.remote.service.UserService
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Function3
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,21 +22,30 @@ class RemoteSource @Inject constructor(
     private val userService: UserService
 ) : RemoteRepository {
 
-    override fun fetchPhotos(): Observable<Resource<List<RawPhoto>>> = photoService
-        .fetchPhotos(PHOTO_LIMIT)
-        .subscribeOn(Schedulers.io())
-        .switchMap { Observable.just(Resource.create(it)) }
-        .observeOn(AndroidSchedulers.mainThread())
+    override fun fetchData(): Single<Resource<Void>> {
+        val photosSource = fetchPhotos()
+        val albumsSource = fetchAlbums(photosSource)
+        val usersSource = fetchUsers(albumsSource)
+        return Single.zip(
+            photosSource.subscribeOn(Schedulers.newThread()).toList(),
+            albumsSource.subscribeOn(Schedulers.newThread()).toList(),
+            usersSource.subscribeOn(Schedulers.newThread()).toList(),
+            Function3<List<RawPhoto>, List<RawAlbum>, List<RawUser>, Resource<Void>> { photos, albums, users ->
+                return@Function3 Resource.Success(null)
+            })            //TODO: create extention?
+            .observeOn(AndroidSchedulers.mainThread())
+    }
 
-    override fun fetchAlbum(id: Id): Observable<Resource<RawAlbum>> = albumService.fetchAlbum(id)
+    //TODO: emit objects one by one
+    private fun fetchPhotos() = photoService.fetchPhotos(PHOTO_LIMIT)
         .subscribeOn(Schedulers.io())
-        .switchMap { Observable.just(Resource.create(it)) }
-        .observeOn(AndroidSchedulers.mainThread())
 
-    override fun fetchUser(id: Id): Observable<Resource<RawUser>> = userService.fetchUser(id)
-        .subscribeOn(Schedulers.io())
-        .switchMap { Observable.just(Resource.create(it)) }
-        .observeOn(AndroidSchedulers.mainThread())
+    private fun fetchAlbums(photos: Observable<RawPhoto>) = photos
+        .distinct { it.albumId }
+        .flatMap { albumService.fetchAlbum(it.albumId) }
+
+    private fun fetchUsers(albums: Observable<RawAlbum>) = albums
+        .flatMap { response -> userService.fetchUser(response.userId) }
 
     companion object {
         private const val PHOTO_LIMIT = 100
