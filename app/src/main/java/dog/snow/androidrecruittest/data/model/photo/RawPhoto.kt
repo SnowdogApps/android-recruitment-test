@@ -8,9 +8,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class RawPhoto(
-    @JsonProperty("id") val id: Id,
-    @JsonProperty("albumId") val albumId: Id,
-    @JsonProperty("title") val title: Title,
-    @JsonProperty("url") val url: Url,
-    @JsonProperty("thumbnailUrl") val thumbnailUrl: Url
+    @JsonProperty("id")             val id: Id,
+    @JsonProperty("albumId")        val albumId: Id,
+    @JsonProperty("title")          val title: Title,
+    @JsonProperty("url")            val url: Url,
+    @JsonProperty("thumbnailUrl")   val thumbnailUrl: Url
 ) : Parcelable

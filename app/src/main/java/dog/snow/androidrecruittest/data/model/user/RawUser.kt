@@ -1,6 +1,7 @@
 package dog.snow.androidrecruittest.data.model.user
 
 import android.os.Parcelable
+import com.fasterxml.jackson.annotation.JsonProperty
 import dog.snow.androidrecruittest.data.model.address.RawAddress
 import dog.snow.androidrecruittest.data.model.common.Id
 import dog.snow.androidrecruittest.data.model.common.Name
@@ -10,12 +11,12 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class RawUser(
-    val id: Id,
-    val name: Name,
-    val username: Username,
-    val email: Email,
-    val address: RawAddress,
-    val phone: Phone,
-    val website: Website,
-    val company: RawCompany
+    @JsonProperty("id")         val id: Id,
+    @JsonProperty("name")       val name: Name,
+    @JsonProperty("username")   val username: Username,
+    @JsonProperty("email")      val email: Email,
+    @JsonProperty("address")    val address: RawAddress,
+    @JsonProperty("phone")      val phone: Phone,
+    @JsonProperty("website")    val website: Website,
+    @JsonProperty("company")    val company: RawCompany
 ) : Parcelable
