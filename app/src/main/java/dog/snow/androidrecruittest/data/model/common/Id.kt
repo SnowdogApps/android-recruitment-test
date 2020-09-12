@@ -5,4 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Id(@JsonProperty("id") val value: Int) : Parcelable
+data class Id(val value: Int) : Parcelable {
+    override fun toString() = value.toString()
+}

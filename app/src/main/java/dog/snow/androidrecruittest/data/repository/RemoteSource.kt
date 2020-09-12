@@ -23,12 +23,12 @@ class RemoteSource @Inject constructor(
     private val userService: UserService
 ) : RemoteRepository {
 
-    override fun fetchData(): Single<Resource<Void>> {
-        return Single.zip(
-            fetchPhotos().toList(),
-            fetchAlbums().toList(),
-            fetchUsers().toList(),
-            Function3<List<RawPhoto>, List<RawAlbum>, List<RawUser>, Resource<Void>> { photos, albums, users ->
+    override fun fetchData(): Flowable<Resource<Void>> {
+        return Flowable.zip(
+            fetchPhotos(),
+            fetchAlbums(),
+            fetchUsers(),
+            Function3<RawPhoto, RawAlbum, RawUser, Resource<Void>> { photos, albums, users ->
                 return@Function3 Resource.Success(null)
             })            //TODO: create extention?
             .observeOn(AndroidSchedulers.mainThread())

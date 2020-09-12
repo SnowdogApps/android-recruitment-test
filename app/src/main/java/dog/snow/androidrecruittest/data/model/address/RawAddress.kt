@@ -10,6 +10,6 @@ data class RawAddress(
     @JsonProperty("street")     val street: Street,
     @JsonProperty("suite")      val suite: Suite,
     @JsonProperty("city")       val city: City,
-    @JsonProperty("zipCode")    val zipCode: ZipCode,
+    @JsonProperty("zipcode")    val zipCode: ZipCode,
     @JsonProperty("geo")        val geo: RawGeo
 ) : Parcelable
