@@ -10,42 +10,26 @@ import javax.inject.Inject
 
 
 class TimeoutInterceptor @Inject constructor() : Interceptor {
-
     private var retryCount = 0
 
-    override fun intercept(chain: Interceptor.Chain): Response = chain.tryToRetry()
-
+    override fun intercept(chain: Interceptor.Chain): Response = chain.tryProceed()
 
     private fun Request.addUserAgentHeader(): Request = newBuilder()
         .addHeader(HeaderUtils.USER_AGENT_LABEL, HeaderUtils.USER_AGENT_VALUE)
         .build()
 
-    private fun Interceptor.Chain.tryToRetry(): Response = try {
-            val response = proceed(request().addUserAgentHeader())
-            Log.i(TAG, "Succeed.")
-            retryCount = 0
-            response
-        } catch (e: SocketTimeoutException) {
-            Log.e(TAG, "Timeout. Retries: $retryCount")
-            if (retryCount < RETRIES) {
-                ++retryCount
-                tryToRetry()
-            } else {
-                retryCount = 0
-                throw SocketTimeoutException()
-            }
-        }
+    private fun Interceptor.Chain.begin(request: Request) = proceed(request.addUserAgentHeader())
 
-  /*  private val Response.retryCount: Int
-        get() {
-            var currentResponse = priorResponse()
-            var result = 0
-            while (currentResponse != null) {
-                result++
-                currentResponse = currentResponse.priorResponse()
-            }
-            return result
-        }*/
+    private fun Interceptor.Chain.tryProceed(): Response = try {
+        begin(request()).apply { retryCount = 0 }
+    } catch (e: SocketTimeoutException) {
+        Log.e(TAG, "Retries - $retryCount.")
+        if (retryCount < RETRIES) {
+            ++retryCount
+            tryProceed()
+        } else
+            throw SocketTimeoutException().apply { retryCount = 0 }
+    }
 
     companion object {
         private val TAG = TimeoutInterceptor::class.simpleName
