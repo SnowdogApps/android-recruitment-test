@@ -7,6 +7,7 @@ import dog.snow.androidrecruittest.data.source.remote.Resource
 import dog.snow.androidrecruittest.data.source.remote.service.AlbumService
 import dog.snow.androidrecruittest.data.source.remote.service.PhotoService
 import dog.snow.androidrecruittest.data.source.remote.service.UserService
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,9 +28,9 @@ class RemoteSource @Inject constructor(
         val albumsSource = fetchAlbums(photosSource)
         val usersSource = fetchUsers(albumsSource)
         return Single.zip(
-            photosSource.subscribeOn(Schedulers.newThread()).toList(),
-            albumsSource.subscribeOn(Schedulers.newThread()).toList(),
-            usersSource.subscribeOn(Schedulers.newThread()).toList(),
+            photosSource.toList(),
+            albumsSource.toList(),
+            usersSource.toList(),
             Function3<List<RawPhoto>, List<RawAlbum>, List<RawUser>, Resource<Void>> { photos, albums, users ->
                 return@Function3 Resource.Success(null)
             })            //TODO: create extention?
@@ -40,11 +41,11 @@ class RemoteSource @Inject constructor(
     private fun fetchPhotos() = photoService.fetchPhotos(PHOTO_LIMIT)
         .subscribeOn(Schedulers.io())
 
-    private fun fetchAlbums(photos: Observable<RawPhoto>) = photos
-        .distinct { it.albumId }
+    private fun fetchAlbums(photos: Flowable<RawPhoto>) = photos
+     //   .switchMap { response -> Observable.fromIterable(response.distinctBy { it.albumId }) }
         .flatMap { albumService.fetchAlbum(it.albumId) }
 
-    private fun fetchUsers(albums: Observable<RawAlbum>) = albums
+    private fun fetchUsers(albums: Flowable<RawAlbum>) = albums
         .flatMap { response -> userService.fetchUser(response.userId) }
 
     companion object {
