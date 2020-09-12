@@ -6,5 +6,5 @@ import io.reactivex.Single
 
 
 interface RemoteRepository {
-    fun fetchData(): Flowable<Resource<Void>>
+    fun fetchData(): Single<out Resource<Void>>
 }
