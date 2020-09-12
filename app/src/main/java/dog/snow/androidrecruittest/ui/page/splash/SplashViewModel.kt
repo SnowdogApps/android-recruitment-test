@@ -1,8 +1,8 @@
 package dog.snow.androidrecruittest.ui.page.splash
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dog.snow.androidrecruittest.data.model.photo.RawPhoto
 import dog.snow.androidrecruittest.data.repository.RemoteRepository
 import dog.snow.androidrecruittest.data.source.remote.Resource
 import io.reactivex.disposables.CompositeDisposable
@@ -15,7 +15,7 @@ class SplashViewModel @Inject constructor(
     val photos get() = _photos
 
     init {
-        fetchPhotos()
+        fetchData()
     }
 
     override fun onCleared() {
@@ -23,11 +23,11 @@ class SplashViewModel @Inject constructor(
         disposable.clear() // TODO: add to base class
     }
 
-    fun fetchPhotos() {
+    fun fetchData() {
         disposable.add(remoteRepository.fetchData()
             .subscribe(
                 { photos.value = it },
-                {}
+                { Log.e(TAG, "Fetch data - error. ", it)}
             )
         )
     }

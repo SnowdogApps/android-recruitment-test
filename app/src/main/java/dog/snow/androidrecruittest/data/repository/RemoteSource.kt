@@ -24,13 +24,10 @@ class RemoteSource @Inject constructor(
 ) : RemoteRepository {
 
     override fun fetchData(): Single<Resource<Void>> {
-        val photosSource = fetchPhotos()
-        val albumsSource = fetchAlbums(photosSource)
-        val usersSource = fetchUsers(albumsSource)
         return Single.zip(
-            photosSource.toList(),
-            albumsSource.toList(),
-            usersSource.toList(),
+            fetchPhotos().toList(),
+            fetchAlbums().toList(),
+            fetchUsers().toList(),
             Function3<List<RawPhoto>, List<RawAlbum>, List<RawUser>, Resource<Void>> { photos, albums, users ->
                 return@Function3 Resource.Success(null)
             })            //TODO: create extention?
@@ -40,12 +37,12 @@ class RemoteSource @Inject constructor(
     //TODO: emit objects one by one
     private fun fetchPhotos() = photoService.fetchPhotos(PHOTO_LIMIT)
         .subscribeOn(Schedulers.io())
+        .concatMapIterable { it }
 
-    private fun fetchAlbums(photos: Flowable<RawPhoto>) = photos
-     //   .switchMap { response -> Observable.fromIterable(response.distinctBy { it.albumId }) }
+    private fun fetchAlbums() = fetchPhotos()
         .flatMap { albumService.fetchAlbum(it.albumId) }
 
-    private fun fetchUsers(albums: Flowable<RawAlbum>) = albums
+    private fun fetchUsers() = fetchAlbums()
         .flatMap { response -> userService.fetchUser(response.userId) }
 
     companion object {

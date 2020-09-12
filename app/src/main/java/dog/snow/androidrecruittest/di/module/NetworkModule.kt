@@ -14,6 +14,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.io.File
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -39,6 +40,7 @@ class NetworkModule {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .cache(cache)
+            .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .build()
     }
 
@@ -68,6 +70,7 @@ class NetworkModule {
     companion object {
         private const val HTTP_CACHE_NAME = "http-cache"
         private const val BASE_URL = "https://jsonplaceholder.typicode.com"
+        private const val CONNECTION_TIMEOUT = 5L
     }
 
 }

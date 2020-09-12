@@ -11,6 +11,6 @@ import retrofit2.http.Query
 interface PhotoService {
 
     @GET("/photos")
-    fun fetchPhotos(@Query("_limit") photoLimit: Int) : Flowable<RawPhoto>
+    fun fetchPhotos(@Query("_limit") photoLimit: Int) : Flowable<List<RawPhoto>>
 
 }
