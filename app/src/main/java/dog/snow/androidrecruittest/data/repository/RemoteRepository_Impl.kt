@@ -1,8 +1,5 @@
 package dog.snow.androidrecruittest.data.repository
 
-import dog.snow.androidrecruittest.data.model.album.RawAlbum
-import dog.snow.androidrecruittest.data.model.photo.RawPhoto
-import dog.snow.androidrecruittest.data.model.user.RawUser
 import dog.snow.androidrecruittest.data.source.remote.Resource
 import dog.snow.androidrecruittest.data.source.remote.service.AlbumService
 import dog.snow.androidrecruittest.data.source.remote.service.PhotoService
@@ -11,7 +8,6 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Function3
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton

@@ -4,6 +4,7 @@ import android.app.Application
 import com.fasterxml.jackson.databind.ObjectMapper
 import dagger.Module
 import dagger.Provides
+import dog.snow.androidrecruittest.data.source.remote.TimeoutInterceptor
 import dog.snow.androidrecruittest.data.source.remote.service.AlbumService
 import dog.snow.androidrecruittest.data.source.remote.service.PhotoService
 import dog.snow.androidrecruittest.data.source.remote.service.UserService
@@ -34,14 +35,15 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkhttpClient(cache: Cache): OkHttpClient {
+    fun provideOkhttpClient(cache: Cache, timeoutInterceptor: TimeoutInterceptor): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(timeoutInterceptor)
+            .readTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
+            .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
             .cache(cache)
-            .readTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
-            .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
             .build()
     }
 
@@ -71,7 +73,7 @@ class NetworkModule {
     companion object {
         private const val HTTP_CACHE_NAME = "http-cache"
         private const val BASE_URL = "https://jsonplaceholder.typicode.com"
-        private const val CONNECTION_TIMEOUT = 5L
+        private const val CONNECTION_TIMEOUT = 1L
     }
 
 }
