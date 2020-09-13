@@ -21,9 +21,9 @@ class RemoteRepository_Impl @Inject constructor(
 
     override fun fetchData(): Single<out Resource<Void>> = photoService.fetchPhotos(PHOTO_LIMIT)    // Fetch photos.
         .subscribeOn(Schedulers.io())
-        .switchMap { response -> Flowable.fromIterable(response.distinctBy { it.albumId }) }
-        .flatMap { albumService.fetchAlbum(it.albumId) }                                        // Fetch album.
-        .flatMap { response -> userService.fetchUser(response.userId) }                         // Fetch user.
+        .switchMap { response -> Flowable.fromIterable(response.distinctBy { it.albumUId }) }
+        .flatMap { albumService.fetchAlbum(it.albumUId) }                                        // Fetch album.
+        .flatMap { response -> userService.fetchUser(response.userUId) }                         // Fetch user.
         .toList()                                                                               // Group results.
         .map { Resource.Success<Void>(null) }                                             // At the time whole data is stored.
         .observeOn(AndroidSchedulers.mainThread())

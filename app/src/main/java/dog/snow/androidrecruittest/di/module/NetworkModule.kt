@@ -1,6 +1,7 @@
 package dog.snow.androidrecruittest.di.module
 
 import android.app.Application
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import dagger.Module
 import dagger.Provides
@@ -20,10 +21,11 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
-    
+
     @Provides
     @Singleton
     fun provideJacksonMapper(): ObjectMapper = ObjectMapper()
+
 
     @Provides
     @Singleton

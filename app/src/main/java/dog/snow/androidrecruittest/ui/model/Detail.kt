@@ -1,7 +1,7 @@
 package dog.snow.androidrecruittest.ui.model
 
 import android.os.Parcelable
-import dog.snow.androidrecruittest.data.model.common.Id
+import dog.snow.androidrecruittest.data.model.common.UId
 import dog.snow.androidrecruittest.data.model.common.Title
 import dog.snow.androidrecruittest.data.model.photo.Url
 import dog.snow.androidrecruittest.data.model.user.Email
@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Detail(
-    val photoId: Id,
+    val photoUId: UId,
     val photoTitle: Title,
     val albumTitle: Title,
     val username: Username,

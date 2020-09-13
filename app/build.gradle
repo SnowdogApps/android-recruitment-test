@@ -88,9 +88,9 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.12.0'
 
     //Jackson converter
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.7.2'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.7.0'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.7.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.4.0'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.4.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.4.0'
 
     //Picasso component.
     implementation 'com.squareup.picasso:picasso:2.71828'
