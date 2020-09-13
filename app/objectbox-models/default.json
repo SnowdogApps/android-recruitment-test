@@ -1,0 +1,62 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:7194637776801479224",
+      "lastPropertyId": "7:7518077282799129817",
+      "name": "RawPhoto",
+      "properties": [
+        {
+          "id": "1:3331336849498909737",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7068888825093899053",
+          "name": "uId",
+          "indexId": "1:8287973625955754522",
+          "type": 5,
+          "flags": 42
+        },
+        {
+          "id": "4:2081678869571236659",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "5:281380205934922642",
+          "name": "url",
+          "type": 9
+        },
+        {
+          "id": "6:2518464784274876955",
+          "name": "thumbnailUrl",
+          "type": 9
+        },
+        {
+          "id": "7:7518077282799129817",
+          "name": "albumUId",
+          "type": 5,
+          "flags": 2
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "1:7194637776801479224",
+  "lastIndexId": "1:8287973625955754522",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    9090981987189523697
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
