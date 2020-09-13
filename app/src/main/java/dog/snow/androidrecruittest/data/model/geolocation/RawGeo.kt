@@ -13,8 +13,6 @@ data class RawGeo(
     @JsonProperty("unknown")        // For some reason @JsonIgnore does not work
     var id: Long = 0,
     @JsonProperty("lat")
-    @Convert(converter = Converters.COORD::class, dbType = String::class)
     val lat: Coordinate,
     @JsonProperty("lng")
-    @Convert(converter = Converters.COORD::class, dbType = String::class)
     val lng: Coordinate) : Parcelable

@@ -14,12 +14,9 @@ data class RawCompany(
     @JsonProperty("unknown")        // For some reason @JsonIgnore does not work
     var id: Long = 0,
     @JsonProperty("name")
-    @Convert(converter = Converters.NAME::class, dbType = String::class)
     val name: Name,
     @JsonProperty("catchPhrase")
-    @Convert(converter = Converters.CATCHPHRASE::class, dbType = String::class)
     val catchPhrase: CatchPhrase,
     @JsonProperty("bs")
-    @Convert(converter = Converters.BS::class, dbType = String::class)
     val bs: Bs
 ) : Parcelable
