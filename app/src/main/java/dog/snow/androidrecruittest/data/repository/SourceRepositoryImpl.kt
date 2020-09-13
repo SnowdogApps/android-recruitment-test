@@ -28,19 +28,25 @@ class SourceRepositoryImpl @Inject constructor(
     private val userBox: Box<RawUser>     //TODO: create database manager
 ) : SourceRepository {
 
-    override fun fetchData(): Single<out Resource<Void>> = photoService.fetchPhotos(PHOTO_LIMIT) // Fetch photos.
-        .subscribeOn(Schedulers.io()) //TODO: split logic into methods
-        .map { putPhotos(it) }
-        .switchMap { response -> Flowable.fromIterable(response.distinctBy { it.albumUId }) }
-        .flatMap { albumService.fetchAlbum(it.albumUId) }                                       // Fetch album.
-        .map { putAlbum(it) }
-        .flatMap { response -> userService.fetchUser(response.userUId) }                        // Fetch user.
-        .map { putUser(it) }
-        .toList()                                                                               // Group results.
-        .map { Resource.Success<Void>(null) }                                             // At the time whole data is stored.
+    override fun pullData(): Single<out Resource<Void>> = pullPhotos()
+        .switchMap { pullAlbums(it) }
+        .flatMap { pullUsers(it) }
+        .toList()  // By the time all values are fetched.
+        .map { Resource.Success<Void>(null) }
         .observeOn(AndroidSchedulers.mainThread())
 
 
+    private fun pullPhotos() = photoService.fetchPhotos(PHOTO_LIMIT)
+        .subscribeOn(Schedulers.io())
+        .map { putPhotos(it) }
+
+    private fun pullAlbums(photos: List<RawPhoto>) = Flowable.fromIterable(photos.distinctBy { it.albumUId })
+        .flatMap { albumService.fetchAlbum(it.albumUId) }
+        .map { putAlbum(it) }
+
+    private fun pullUsers(album: RawAlbum) = userService.fetchUser(album.userUId)
+        .map { putUser(it) }
+    
     private fun putPhotos(photos: List<RawPhoto>):List<RawPhoto> =  with(photoBox) {
         removeAll()
         put(photos)

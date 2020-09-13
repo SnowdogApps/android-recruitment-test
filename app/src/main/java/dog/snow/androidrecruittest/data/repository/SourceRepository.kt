@@ -5,5 +5,5 @@ import io.reactivex.Single
 
 
 interface SourceRepository {
-    fun fetchData(): Single<out Resource<Void>>
+    fun pullData(): Single<out Resource<Void>>
 }

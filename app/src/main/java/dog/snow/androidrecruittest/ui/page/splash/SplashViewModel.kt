@@ -27,7 +27,7 @@ class SplashViewModel @Inject constructor(
     fun fetchData() {
         Log.i(TAG, "Fetch data - start. ")
         _fetchDataState.value = Resource.Loading(null)
-        disposable.add(sourceRepository.fetchData()
+        disposable.add(sourceRepository.pullData()
             .subscribe(
                 {
                     _fetchDataState.value = it
