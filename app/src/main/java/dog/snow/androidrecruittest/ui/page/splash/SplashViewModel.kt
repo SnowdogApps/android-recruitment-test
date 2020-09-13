@@ -4,13 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dog.snow.androidrecruittest.data.repository.RemoteRepository
+import dog.snow.androidrecruittest.data.repository.SourceRepository
 import dog.snow.androidrecruittest.data.source.remote.Resource
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(
-    private val remoteRepository: RemoteRepository
+    private val sourceRepository: SourceRepository
 ) : ViewModel() {
     private val _fetchDataState = MutableLiveData<Resource<Void>>()
     val fetchDataState: LiveData<Resource<Void>> get() = _fetchDataState
@@ -27,7 +27,7 @@ class SplashViewModel @Inject constructor(
     fun fetchData() {
         Log.i(TAG, "Fetch data - start. ")
         _fetchDataState.value = Resource.Loading(null)
-        disposable.add(remoteRepository.fetchData()
+        disposable.add(sourceRepository.fetchData()
             .subscribe(
                 {
                     _fetchDataState.value = it

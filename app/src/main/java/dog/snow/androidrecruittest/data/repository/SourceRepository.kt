@@ -4,6 +4,6 @@ import dog.snow.androidrecruittest.data.source.remote.Resource
 import io.reactivex.Single
 
 
-interface RemoteRepository {
+interface SourceRepository {
     fun fetchData(): Single<out Resource<Void>>
 }
