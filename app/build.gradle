@@ -6,6 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'io.objectbox'
+
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 
 android {
     compileSdkVersion 29
@@ -88,9 +92,9 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.12.0'
 
     //Jackson converter
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.7.2'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.7.0'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.7.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.4.0'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.4.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.4.0'
 
     //Picasso component.
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -111,5 +115,26 @@ dependencies {
     // dagger.android package (optional)
     implementation "com.google.dagger:dagger-android:$dagger2_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
+
+    /** NavigationUI */
+
+    def nav_version = "2.3.0"
+
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Dynamic Feature Module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
+    /** ObjectBox */
+
+    implementation "io.objectbox:objectbox-kotlin:$objectboxVersion"
+    implementation "io.objectbox:objectbox-android:$objectboxVersion"
+    kapt "io.objectbox:objectbox-processor:$objectboxVersion"
+
 
 }

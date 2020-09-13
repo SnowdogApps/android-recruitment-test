@@ -1,15 +1,66 @@
 package dog.snow.androidrecruittest.data.model.photo
 
 import android.os.Parcelable
-import dog.snow.androidrecruittest.data.model.common.Id
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
 import dog.snow.androidrecruittest.data.model.common.Title
+import dog.snow.androidrecruittest.data.model.common.UId
+import dog.snow.androidrecruittest.utils.Converters
+import io.objectbox.annotation.Convert
+import io.objectbox.annotation.Entity
+import io.objectbox.annotation.Id
+import io.objectbox.annotation.Unique
+
+
 import kotlinx.android.parcel.Parcelize
 
+@Entity
 @Parcelize
 data class RawPhoto(
-    val id: Id,
-    val albumId: Id,
+    @Id
+    @JsonProperty("unknown")        // For some reason @JsonIgnore does not work
+    var id: Long = 0,
+    @Unique
+    @JsonProperty("id")
+    @Convert(converter = Converters.UID::class, dbType = Int::class)
+    val uId: UId,
+    @JsonProperty("albumId")
+    @Convert(converter = Converters.UID::class, dbType = Int::class)
+    val albumUId: dog.snow.androidrecruittest.data.model.common.UId,
+    @JsonProperty("title")
+    @Convert(converter = Converters.TITLE::class, dbType = String::class)
     val title: Title,
+    @JsonProperty("url")
+    @Convert(converter = Converters.URL::class, dbType = String::class)
     val url: Url,
+    @JsonProperty("thumbnailUrl")
+    @Convert(converter = Converters.URL::class, dbType = String::class)
     val thumbnailUrl: Url
 ) : Parcelable
+
+
+/*
+@Entity
+@Parcelize
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class RawPhoto(
+    @Id
+    @JsonProperty("unknown")        // For some reason @JsonIgnore does not work
+    var id: Long = 0,
+    @Unique
+    @JsonProperty("id")
+    @Convert(converter = Converters.UID::class, dbType = Int::class)
+    val uId: Id,
+    @JsonProperty("albumId")
+    @Convert(converter = Converters.UID::class, dbType = Int::class)
+    val albumUUId: dog.snow.androidrecruittest.data.model.common.UId,
+    @JsonProperty("title")
+    @Convert(converter = Converters.TITLE::class, dbType = String::class)
+    val title: Title,
+    @JsonProperty("url")
+    @Convert(converter = Converters.URL::class, dbType = String::class)
+    val url: Url,
+    @JsonProperty("thumbnailUrl")
+    @Convert(converter = Converters.URL::class, dbType = String::class)
+    val thumbnailUrl: Url
+) : Parcelable*/

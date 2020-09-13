@@ -1,0 +1,150 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:7194637776801479224",
+      "lastPropertyId": "7:7518077282799129817",
+      "name": "RawPhoto",
+      "properties": [
+        {
+          "id": "1:3331336849498909737",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7068888825093899053",
+          "name": "uId",
+          "indexId": "1:8287973625955754522",
+          "type": 5,
+          "flags": 42
+        },
+        {
+          "id": "4:2081678869571236659",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "5:281380205934922642",
+          "name": "url",
+          "type": 9
+        },
+        {
+          "id": "6:2518464784274876955",
+          "name": "thumbnailUrl",
+          "type": 9
+        },
+        {
+          "id": "7:7518077282799129817",
+          "name": "albumUId",
+          "type": 5,
+          "flags": 2
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:8527047614799855211",
+      "lastPropertyId": "9:2264864687231214162",
+      "name": "RawUser",
+      "properties": [
+        {
+          "id": "1:2690848113194462579",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6579766095363162718",
+          "name": "UId",
+          "indexId": "2:444056181757732506",
+          "type": 5,
+          "flags": 42
+        },
+        {
+          "id": "3:2897106595126095305",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "4:5938172664632678770",
+          "name": "username",
+          "type": 9
+        },
+        {
+          "id": "5:5243011112098012249",
+          "name": "email",
+          "type": 9
+        },
+        {
+          "id": "6:999382539053400551",
+          "name": "address",
+          "type": 9
+        },
+        {
+          "id": "7:1035793953257344571",
+          "name": "phone",
+          "type": 9
+        },
+        {
+          "id": "8:717493000981113602",
+          "name": "website",
+          "type": 9
+        },
+        {
+          "id": "9:2264864687231214162",
+          "name": "company",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:4791401468232031976",
+      "lastPropertyId": "4:5888523677773087273",
+      "name": "RawAlbum",
+      "properties": [
+        {
+          "id": "1:9012150520025154556",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6963306439443618764",
+          "name": "uId",
+          "indexId": "3:3894562305498324585",
+          "type": 5,
+          "flags": 42
+        },
+        {
+          "id": "3:2268139202797294423",
+          "name": "userUId",
+          "type": 5,
+          "flags": 2
+        },
+        {
+          "id": "4:5888523677773087273",
+          "name": "title",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "3:4791401468232031976",
+  "lastIndexId": "3:3894562305498324585",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    9090981987189523697
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
