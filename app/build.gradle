@@ -8,6 +8,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'io.objectbox'
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 
 android {
     compileSdkVersion 29
@@ -129,6 +131,7 @@ dependencies {
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
     /** ObjectBox */
+
     implementation "io.objectbox:objectbox-kotlin:$objectboxVersion"
     implementation "io.objectbox:objectbox-android:$objectboxVersion"
     kapt "io.objectbox:objectbox-processor:$objectboxVersion"
