@@ -31,7 +31,7 @@ class SourceRepositoryImpl @Inject constructor(
     override fun pullData(): Single<out Resource<Void>> = pullPhotos()
         .switchMap { pullAlbums(it) }
         .flatMap { pullUsers(it) }
-        .toList()  // By the time all values are fetched.
+        .toList() // By the time all values are fetched.
         .map { Resource.Success<Void>(null) }
         .observeOn(AndroidSchedulers.mainThread())
 
