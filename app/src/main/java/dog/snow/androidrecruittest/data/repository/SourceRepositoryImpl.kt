@@ -5,6 +5,7 @@ import dog.snow.androidrecruittest.data.model.album.RawAlbum_
 import dog.snow.androidrecruittest.data.model.photo.RawPhoto
 import dog.snow.androidrecruittest.data.model.user.RawUser
 import dog.snow.androidrecruittest.data.model.user.RawUser_
+import dog.snow.androidrecruittest.data.source.local.DatabaseManager
 import dog.snow.androidrecruittest.data.source.remote.Resource
 import dog.snow.androidrecruittest.data.source.remote.service.AlbumService
 import dog.snow.androidrecruittest.data.source.remote.service.PhotoService
@@ -23,9 +24,8 @@ class SourceRepositoryImpl @Inject constructor(
     private val photoService: PhotoService,
     private val albumService: AlbumService,
     private val userService: UserService,
-    private val photoBox: Box<RawPhoto>,     //TODO: create database manager
-    private val albumBox: Box<RawAlbum>,     //TODO: create database manager
-    private val userBox: Box<RawUser>     //TODO: create database manager
+    private val dbManager: DatabaseManager
+
 ) : SourceRepository {
 
     override fun pullData(): Single<out Resource<Void>> = pullPhotos()
@@ -38,32 +38,16 @@ class SourceRepositoryImpl @Inject constructor(
 
     private fun pullPhotos() = photoService.fetchPhotos(PHOTO_LIMIT)
         .subscribeOn(Schedulers.io())
-        .map { putPhotos(it) }
+        .map { dbManager.putPhotos(it) }
 
     private fun pullAlbums(photos: List<RawPhoto>) = Flowable.fromIterable(photos.distinctBy { it.albumUId })
         .flatMap { albumService.fetchAlbum(it.albumUId) }
-        .map { putAlbum(it) }
+        .map { dbManager.putAlbum(it) }
 
     private fun pullUsers(album: RawAlbum) = userService.fetchUser(album.userUId)
-        .map { putUser(it) }
-    
-    private fun putPhotos(photos: List<RawPhoto>):List<RawPhoto> =  with(photoBox) {
-        removeAll()
-        put(photos)
-        photos
-    }
+        .map { dbManager.putUser(it) }
 
-    private fun putAlbum(album: RawAlbum): RawAlbum = with(albumBox) {
-        query().equal(RawAlbum_.uId, album.uId.value).build().remove()
-        put(album)
-        album
-    }
 
-    private fun putUser(user: RawUser):  RawUser = with(userBox) {
-        query().equal(RawUser_.uId, user.uId.value).build().remove()
-        put(user)
-        user
-    }
     companion object {
         private const val PHOTO_LIMIT = 100
         private val TAG = SourceRepositoryImpl::class.simpleName
