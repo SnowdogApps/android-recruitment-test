@@ -6,10 +6,12 @@ import dog.snow.androidrecruittest.data.model.common.UId
 import dog.snow.androidrecruittest.data.model.common.Title
 import dog.snow.androidrecruittest.utils.Converters
 import io.objectbox.annotation.Convert
+import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.annotation.Unique
 import kotlinx.android.parcel.Parcelize
 
+@Entity
 @Parcelize
 data class RawAlbum(
     @Id
@@ -18,7 +20,7 @@ data class RawAlbum(
     @Unique
     @JsonProperty("id")
     @Convert(converter = Converters.UID::class, dbType = Int::class)
-    val UId: UId,
+    val uId: UId,
     @JsonProperty("userId")
     @Convert(converter = Converters.UID::class, dbType = Int::class)
     val userUId: UId,

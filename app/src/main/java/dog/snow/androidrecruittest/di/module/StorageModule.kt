@@ -3,8 +3,10 @@ package dog.snow.androidrecruittest.di.module
 import android.app.Application
 import dagger.Module
 import dagger.Provides
-import dog.snow.androidrecruittest.data.model.photo.MyObjectBox
+import dog.snow.androidrecruittest.data.model.MyObjectBox
+import dog.snow.androidrecruittest.data.model.album.RawAlbum
 import dog.snow.androidrecruittest.data.model.photo.RawPhoto
+import dog.snow.androidrecruittest.data.model.user.RawUser
 import io.objectbox.Box
 import io.objectbox.BoxStore
 import io.objectbox.kotlin.boxFor
@@ -22,5 +24,13 @@ class StorageModule {
     @Provides
     @Singleton
     fun providePhotoBox(boxStore: BoxStore): Box<RawPhoto> = boxStore.boxFor()
+
+    @Provides
+    @Singleton
+    fun provideAlbumBox(boxStore: BoxStore): Box<RawAlbum> = boxStore.boxFor()
+
+    @Provides
+    @Singleton
+    fun provideUserBox(boxStore: BoxStore): Box<RawUser> = boxStore.boxFor()
 
 }

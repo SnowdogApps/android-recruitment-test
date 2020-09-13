@@ -18,7 +18,7 @@ import io.objectbox.converter.PropertyConverter
 
 object Converters {
     private const val NO_STRING = ""
-    private const val NO_INT = 0
+    private const val NO_INT = 0L
     class WEBSITE : PropertyConverter<Website, String> {
         override fun convertToDatabaseValue(entityProperty: Website?): String = entityProperty?.value ?: NO_STRING
         override fun convertToEntityProperty(databaseValue: String?): Website = Website(databaseValue ?: NO_STRING)
@@ -55,9 +55,9 @@ object Converters {
         override fun convertToEntityProperty(databaseValue: String?): Title = Title(databaseValue ?: NO_STRING)
     }
 
-    class UID : PropertyConverter<UId, Int> {
-        override fun convertToDatabaseValue(entityProperty: UId?): Int = entityProperty?.value ?: NO_INT
-        override fun convertToEntityProperty(databaseValue: Int?): UId = UId(databaseValue ?: NO_INT)
+    class UID : PropertyConverter<UId, Long> {
+        override fun convertToDatabaseValue(entityProperty: UId?): Long = entityProperty?.value ?: NO_INT
+        override fun convertToEntityProperty(databaseValue: Long?): UId = UId(databaseValue ?: NO_INT)
     }
 
     class ADDRESS : PropertyConverter<RawAddress, String> {
@@ -69,41 +69,4 @@ object Converters {
         override fun convertToDatabaseValue(entityProperty: RawCompany?): String = ObjectMapper().writeValueAsString(entityProperty)
         override fun convertToEntityProperty(databaseValue: String?): RawCompany = ObjectMapper().readValue(databaseValue, RawCompany::class.java)
     }
-
-
-    /*class COORD : PropertyConverter<Coordinate, String> {
-        override fun convertToDatabaseValue(entityProperty: Coordinate?): String = entityProperty?.value ?: NO_STRING
-        override fun convertToEntityProperty(databaseValue: String?): Coordinate = Coordinate(databaseValue ?: NO_STRING)
-    }
-
-    class CATCHPHRASE : PropertyConverter<CatchPhrase, String> {
-        override fun convertToDatabaseValue(entityProperty: CatchPhrase?): String = entityProperty?.value ?: NO_STRING
-        override fun convertToEntityProperty(databaseValue: String?): CatchPhrase = CatchPhrase(databaseValue ?: NO_STRING)
-    }
-
-    class BS : PropertyConverter<Bs, String> {
-        override fun convertToDatabaseValue(entityProperty: Bs?): String = entityProperty?.value ?: NO_STRING
-        override fun convertToEntityProperty(databaseValue: String?): Bs = Bs(databaseValue ?: NO_STRING)
-    }
-
-
-    class CITY : PropertyConverter<City, String> {
-        override fun convertToDatabaseValue(entityProperty: City?): String = entityProperty?.value ?: NO_STRING
-        override fun convertToEntityProperty(databaseValue: String?): City = City(databaseValue ?: NO_STRING)
-    }
-
-    class STREET : PropertyConverter<Street, String> {
-        override fun convertToDatabaseValue(entityProperty: Street?): String = entityProperty?.value ?: NO_STRING
-        override fun convertToEntityProperty(databaseValue: String?): Street = Street(databaseValue ?: NO_STRING)
-    }
-
-    class SUITE : PropertyConverter<Suite, String> {
-        override fun convertToDatabaseValue(entityProperty: Suite?): String = entityProperty?.value ?: NO_STRING
-        override fun convertToEntityProperty(databaseValue: String?): Suite = Suite(databaseValue ?: NO_STRING)
-    }
-
-    class ZIPCODE : PropertyConverter<ZipCode, String> {
-        override fun convertToDatabaseValue(entityProperty: ZipCode?): String = entityProperty?.value ?: NO_STRING
-        override fun convertToEntityProperty(databaseValue: String?): ZipCode = ZipCode(databaseValue ?: NO_STRING)
-    }*/
 }

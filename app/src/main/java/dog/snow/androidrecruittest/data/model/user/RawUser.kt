@@ -8,12 +8,14 @@ import dog.snow.androidrecruittest.data.model.common.Name
 import dog.snow.androidrecruittest.data.model.company.RawCompany
 import dog.snow.androidrecruittest.utils.Converters
 import io.objectbox.annotation.Convert
+import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.annotation.Unique
 import io.objectbox.relation.ToOne
 
 import kotlinx.android.parcel.Parcelize
 
+@Entity
 @Parcelize
 data class RawUser(
     @Id
@@ -22,7 +24,7 @@ data class RawUser(
     @Unique
     @JsonProperty("id")
     @Convert(converter = Converters.UID::class, dbType = Int::class)
-    val UId: UId,
+    val uId: UId,
     @JsonProperty("name")
     @Convert(converter = Converters.NAME::class, dbType = String::class)
     val name: Name,

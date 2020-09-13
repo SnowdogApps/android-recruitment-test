@@ -16,7 +16,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Entity
 @Parcelize
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class RawPhoto(
     @Id
     @JsonProperty("unknown")        // For some reason @JsonIgnore does not work
