@@ -1,11 +1,15 @@
 package dog.snow.androidrecruittest.data.model.photo
 
 import android.os.Parcelable
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import dog.snow.androidrecruittest.data.model.common.Title
 import dog.snow.androidrecruittest.data.model.common.UId
+import io.objectbox.annotation.Convert
+import io.objectbox.annotation.Entity
+import io.objectbox.annotation.Id
+import io.objectbox.annotation.Unique
+
 
 import kotlinx.android.parcel.Parcelize
 
@@ -19,7 +23,7 @@ data class RawPhoto(
     @Unique
     @JsonProperty("id")
     @Convert(converter = Converters.UID::class, dbType = Int::class)
-    val uId: Id,
+    val uId: UId,
     @JsonProperty("albumId")
     @Convert(converter = Converters.UID::class, dbType = Int::class)
     val albumUUId: dog.snow.androidrecruittest.data.model.common.UId,
