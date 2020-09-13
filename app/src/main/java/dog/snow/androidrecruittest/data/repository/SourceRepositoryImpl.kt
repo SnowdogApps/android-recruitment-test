@@ -38,14 +38,23 @@ class SourceRepositoryImpl @Inject constructor(
 
     private fun pullPhotos() = photoService.fetchPhotos(PHOTO_LIMIT)
         .subscribeOn(Schedulers.io())
-        .map { dbManager.putPhotos(it) }
+        .map {
+            dbManager.putPhotos(it)
+            it
+        }
 
     private fun pullAlbums(photos: List<RawPhoto>) = Flowable.fromIterable(photos.distinctBy { it.albumUId })
         .flatMap { albumService.fetchAlbum(it.albumUId) }
-        .map { dbManager.putAlbum(it) }
+        .map {
+            dbManager.putAlbum(it)
+            it
+        }
 
     private fun pullUsers(album: RawAlbum) = userService.fetchUser(album.userUId)
-        .map { dbManager.putUser(it) }
+        .map {
+            dbManager.putUser(it)
+            it
+        }
 
 
     companion object {
