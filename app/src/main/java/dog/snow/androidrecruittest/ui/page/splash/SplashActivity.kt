@@ -35,7 +35,7 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
     private fun setupViewModel() {
         splashViewModel = ViewModelProvider(this, viewModelFactory)[SplashViewModel::class.java]
         splashViewModel.fetchDataState.subscribe(this) {
-            
+
         }
     }
 
