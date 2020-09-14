@@ -38,11 +38,11 @@ class ListViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     {
-                        Log.i(TAG, "Get data from db - finish. List size: ${it.size}")
                         _listItems.value = it
+                        Log.i(TAG, "Get data from db - finish. List size: ${it.size}")
                     }, {
-                        Log.i(TAG, "Get data from db - error.", it)
                         _listItems.value = listOf()
+                        Log.e(TAG, "Get data from db - error.", it)
                     })
         )
     }

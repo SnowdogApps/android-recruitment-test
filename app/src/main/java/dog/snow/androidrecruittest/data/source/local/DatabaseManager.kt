@@ -5,7 +5,6 @@ import dog.snow.androidrecruittest.data.model.type.common.UId
 import io.objectbox.Box
 import io.objectbox.rx.RxQuery
 import io.reactivex.Flowable
-import io.reactivex.Single
 import javax.inject.Inject
 
 class DatabaseManager @Inject constructor( //TODO: create interface
@@ -30,10 +29,12 @@ class DatabaseManager @Inject constructor( //TODO: create interface
 
     fun getPhotos(): Flowable<RawPhoto> = RxQuery.flowableOneByOne(photoBox.query().build())
 
-    fun getAlbum(uId: UId): Flowable<RawAlbum> =
-        RxQuery.flowableOneByOne(albumBox.query().equal(RawAlbum_.uId, uId.value).build())
+    fun getPhoto(photoUId: UId): Flowable<RawPhoto> =
+        RxQuery.flowableOneByOne(photoBox.query().equal(RawPhoto_.uId, photoUId.value).build())
 
-    fun getUser(uId: UId): Flowable<RawUser> =
-        RxQuery.flowableOneByOne(userBox.query().equal(RawUser_.uId, uId.value).build())
+    fun getAlbum(albumUid: UId): Flowable<RawAlbum> =
+        RxQuery.flowableOneByOne(albumBox.query().equal(RawAlbum_.uId, albumUid.value).build())
 
+    fun getUser(userUId: UId): Flowable<RawUser> =
+        RxQuery.flowableOneByOne(userBox.query().equal(RawUser_.uId, userUId.value).build())
 }

@@ -1,4 +1,6 @@
 <resources>
+
+    <!-- General. -->
     <string name="app_name">Android Recruit Test</string>
     <string name="search_hint">Search…</string>
     <string name="empty_list">No items to show…</string>
@@ -8,4 +10,9 @@
     <string name="cant_download_dialog_message">Can\'t download data because of error:\n%s\nCheck your internet connection.</string>
     <string name="cant_download_dialog_btn_positive">Try again</string>
     <string name="cant_download_dialog_btn_negative">Close</string>
+
+    <!-- Nav graph. -->
+    <string name="list_items_label">List items</string>
+    <string name="detail_label">Detail</string>
+
 </resources>

@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import dog.snow.androidrecruittest.di.key.ViewModelKey
 import dog.snow.androidrecruittest.ui.common.view_model.ViewModelFactory
+import dog.snow.androidrecruittest.ui.page.details.DetailsViewModel
 import dog.snow.androidrecruittest.ui.page.list.ListViewModel
 import dog.snow.androidrecruittest.ui.page.splash.SplashViewModel
 
@@ -25,4 +26,10 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(ListViewModel::class)
     fun bindListViewModule(listViewModel: ListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailsViewModel::class)
+    fun bindDetailsViewModel(listViewModel: DetailsViewModel): ViewModel
+
 }

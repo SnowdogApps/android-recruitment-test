@@ -5,5 +5,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class UId(val value: Long) : Parcelable {
-    override fun toString() = value.toString()
+    override fun toString(): String = value.toString()
 }

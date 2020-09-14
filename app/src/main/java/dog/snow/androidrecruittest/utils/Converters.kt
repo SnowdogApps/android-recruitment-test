@@ -1,6 +1,7 @@
 package dog.snow.androidrecruittest.utils
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.module.SimpleModule
 import dog.snow.androidrecruittest.data.model.raw.RawAddress
 import dog.snow.androidrecruittest.data.model.type.common.Name
 import dog.snow.androidrecruittest.data.model.type.common.Title
@@ -58,12 +59,18 @@ object Converters {
     }
 
     class ADDRESS : PropertyConverter<RawAddress, String> {
-        override fun convertToDatabaseValue(entityProperty: RawAddress?): String = ObjectMapper().writeValueAsString(entityProperty)
+        override fun convertToDatabaseValue(entityProperty: RawAddress?): String {
+            val mapper = ObjectMapper().registerModule(SimpleModule().addSerializer(Serializers.RawAddressSerializer()))
+            return mapper.writeValueAsString(entityProperty)
+        }
         override fun convertToEntityProperty(databaseValue: String?): RawAddress = ObjectMapper().readValue(databaseValue, RawAddress::class.java)
     }
 
     class COMPANY : PropertyConverter<RawCompany, String> {
-        override fun convertToDatabaseValue(entityProperty: RawCompany?): String = ObjectMapper().writeValueAsString(entityProperty)
+        override fun convertToDatabaseValue(entityProperty: RawCompany?): String  {
+            val mapper = ObjectMapper().registerModule(SimpleModule().addSerializer(Serializers.RawCompanySerializer()))
+            return mapper.writeValueAsString(entityProperty)
+        }
         override fun convertToEntityProperty(databaseValue: String?): RawCompany = ObjectMapper().readValue(databaseValue, RawCompany::class.java)
     }
 }

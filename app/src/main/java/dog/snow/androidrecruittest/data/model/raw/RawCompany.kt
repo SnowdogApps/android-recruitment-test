@@ -5,18 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import dog.snow.androidrecruittest.data.model.type.common.Name
 import dog.snow.androidrecruittest.data.model.type.company.Bs
 import dog.snow.androidrecruittest.data.model.type.company.CatchPhrase
+import dog.snow.androidrecruittest.utils.JsonLabels
 import io.objectbox.annotation.Id
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class RawCompany(
-    @Id
-    @JsonProperty("unknown")        // For some reason @JsonIgnore does not work
-    var id: Long = 0,
-    @JsonProperty("name")
+    @JsonProperty(JsonLabels.NAME)
     val name: Name,
-    @JsonProperty("catchPhrase")
+    @JsonProperty(JsonLabels.CATCHPHRASE)
     val catchPhrase: CatchPhrase,
-    @JsonProperty("bs")
+    @JsonProperty(JsonLabels.BS)
     val bs: Bs
 ) : Parcelable

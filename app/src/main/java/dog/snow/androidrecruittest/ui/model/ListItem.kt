@@ -20,9 +20,9 @@ data class ListItem(
     companion object { // TODO: create binding module
         @BindingAdapter("avatar")
         @JvmStatic
-        fun loadImage(imageView: ImageView, url: Url) {
+        fun loadImage(imageView: ImageView, url: Url?) {
             Picasso.get()
-                .load(url.value)
+                .load(url?.value)
                 //.centerCrop()
                 //.resize(850, 850)
                 //.transform(RoundedCornersTransformation(40, 0))

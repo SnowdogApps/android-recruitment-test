@@ -1,5 +1,10 @@
 package dog.snow.androidrecruittest
 
+import dog.snow.androidrecruittest.TestingUtils.rawPhoto
+import dog.snow.androidrecruittest.TestingUtils.rawUser
+import dog.snow.androidrecruittest.data.model.raw.*
+import io.objectbox.BoxStore
+import io.objectbox.DebugFlags
 import dog.snow.androidrecruittest.data.model.raw.MyObjectBox
 import dog.snow.androidrecruittest.data.model.raw.RawPhoto
 import dog.snow.androidrecruittest.data.model.raw.RawPhoto_
@@ -21,14 +26,6 @@ class DatabaseManagerTest {
 
     private val TEST_DIRECTORY = File("objectbox-example/test-db")
     private lateinit var boxStore: BoxStore
-    private val rawPhoto = RawPhoto(
-        0,
-        UId(0),
-        UId(0),
-        Title(""),
-        Url(""),
-        Url("")
-    )
 
     @Before
     @Throws(Exception::class)
@@ -53,12 +50,24 @@ class DatabaseManagerTest {
     }
 
     @Test
-    fun `insert photo and get photo`() {
+    fun `insert photo and then get photo`() {
         val photoBox =boxStore.boxFor(RawPhoto::class.java)
             photoBox.put(rawPhoto)
         assertEquals(1, photoBox.count())
 
         val photo = photoBox.query().equal(RawPhoto_.uId, rawPhoto.uId.value).build().find()
+
+        assertEquals(1, photo.size)
+        assertEquals(rawPhoto.uId.value, photo[0].uId.value)
+    }
+
+    @Test
+    fun `insert user and then get user`() {
+        val userBox = boxStore.boxFor(RawUser::class.java)
+        userBox.put(rawUser)
+        assertEquals(1, userBox.count())
+
+        val photo = userBox.query().equal(RawUser_.uId, rawUser.uId.value).build().find()
 
         assertEquals(1, photo.size)
         assertEquals(rawPhoto.uId.value, photo[0].uId.value)
