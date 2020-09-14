@@ -1,13 +1,12 @@
-package dog.snow.androidrecruittest.extensions
+package dog.snow.androidrecruittest.ui.adapter
 
 import android.widget.ImageView
-import android.widget.ListAdapter
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import dog.snow.androidrecruittest.R
+import dog.snow.androidrecruittest.extensions.ItemClickedListener
 import dog.snow.androidrecruittest.repository.service.ListItem
-import dog.snow.androidrecruittest.ui.adapter.ListItemsAdapter
 
 class BindingAdapter {
 
@@ -43,7 +42,8 @@ class BindingAdapter {
             }
 
             recyclerView.run {
-                adapter = listItemsAdapter
+                adapter =
+                    listItemsAdapter
                 setHasFixedSize(true)
             }
         }

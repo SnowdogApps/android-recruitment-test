@@ -1,7 +1,5 @@
-package dog.snow.androidrecruittest
+package dog.snow.androidrecruittest.ui.activities
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -29,13 +27,5 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun onToolbarNavigateUp() {
         onBackPressed()
-    }
-
-    fun setToolbarNavigationIcon(@DrawableRes iconResId: Int?) {
-        if (iconResId == null) toolbar?.navigationIcon = iconResId else toolbar?.setNavigationIcon(iconResId)
-    }
-
-    fun setToolbarTitle(@StringRes titleId: Int) {
-        supportActionBar?.setTitle(titleId)
     }
 }

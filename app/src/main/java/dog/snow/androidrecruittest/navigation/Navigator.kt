@@ -3,7 +3,7 @@ package dog.snow.androidrecruittest.navigation
 import android.widget.ImageView
 import androidx.fragment.app.FragmentManager
 import androidx.transition.TransitionInflater
-import dog.snow.androidrecruittest.BaseActivity
+import dog.snow.androidrecruittest.ui.activities.BaseActivity
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.db.dao.FragmentUtil
 import dog.snow.androidrecruittest.repository.service.ListItem
