@@ -1,9 +1,17 @@
-package dog.snow.androidrecruittest.repository.service
+package dog.snow.androidrecruittest.domain.interctor
 
+import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.observers.DisposableSingleObserver
 
 interface ExecutableUseCase {
+
+    interface Completable<in Params> {
+        fun execute(
+            observer: DisposableCompletableObserver = EmptyCompletableObserver(),
+            params: Params? = null
+        )
+    }
 
     interface Single<Results, in Params> {
         fun execute(

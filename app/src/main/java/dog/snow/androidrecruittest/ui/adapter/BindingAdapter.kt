@@ -5,7 +5,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import dog.snow.androidrecruittest.R
-import dog.snow.androidrecruittest.extensions.ItemClickedListener
+import dog.snow.androidrecruittest.listener.ItemClickedListener
 import dog.snow.androidrecruittest.repository.service.ListItem
 
 class BindingAdapter {

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dog.snow.androidrecruittest.databinding.ListItemBinding
-import dog.snow.androidrecruittest.extensions.ItemClickedListener
+import dog.snow.androidrecruittest.listener.ItemClickedListener
 import dog.snow.androidrecruittest.repository.service.ListItem
 
 class ListItemsAdapter : ListAdapter<ListItem, ListItemsAdapter.ViewHolder>(DIFFER) {

@@ -1,5 +1,7 @@
 package dog.snow.androidrecruittest.repository.service
 
+import dog.snow.androidrecruittest.domain.interctor.BaseReactiveDisposableClass
+import dog.snow.androidrecruittest.domain.interctor.ExecutableUseCase
 import io.reactivex.Single
 import io.reactivex.observers.DisposableSingleObserver
 

@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.repository.service
+package dog.snow.androidrecruittest.domain.interctor
 
 import io.reactivex.observers.DisposableSingleObserver
 

@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.extensions
+package dog.snow.androidrecruittest.listener
 
 import android.widget.ImageView
 import dog.snow.androidrecruittest.repository.service.ListItem

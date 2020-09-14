@@ -2,7 +2,6 @@ package dog.snow.androidrecruittest.extensions
 
 import android.os.Bundle
 
-
 fun Bundle?.getPrintableString(): String {
     this ?: return "null"
 

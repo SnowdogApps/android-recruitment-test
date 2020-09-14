@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.repository.service
+package dog.snow.androidrecruittest.domain.repository
 
 import dog.snow.androidrecruittest.repository.service.ListItem
 import io.reactivex.Single

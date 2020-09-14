@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.databinding.DetailsFragmentBinding
+import dog.snow.androidrecruittest.extensions.arg
+import dog.snow.androidrecruittest.extensions.argNotNull
 import dog.snow.androidrecruittest.repository.service.DbConstans
 import dog.snow.androidrecruittest.repository.service.ListItem
 import kotlinx.android.synthetic.main.details_fragment.*
