@@ -6,7 +6,7 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import dog.snow.androidrecruittest.di.ApplicationController
-import dog.snow.androidrecruittest.di.module.*
+import dog.snow.androidrecruittest.di.module.main.*
 import javax.inject.Singleton
 
 @Component(
@@ -23,10 +23,8 @@ import javax.inject.Singleton
 @Singleton
 interface ApplicationComponent : AndroidInjector<ApplicationController> {
 
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(application: Application): Builder
-        fun build(): ApplicationComponent
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance application: Application): ApplicationComponent
     }
 }

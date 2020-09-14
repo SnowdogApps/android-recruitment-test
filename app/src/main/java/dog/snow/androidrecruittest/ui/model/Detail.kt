@@ -1,12 +1,12 @@
 package dog.snow.androidrecruittest.ui.model
 
 import android.os.Parcelable
-import dog.snow.androidrecruittest.data.model.common.UId
-import dog.snow.androidrecruittest.data.model.common.Title
-import dog.snow.androidrecruittest.data.model.photo.Url
-import dog.snow.androidrecruittest.data.model.user.Email
-import dog.snow.androidrecruittest.data.model.user.Phone
-import dog.snow.androidrecruittest.data.model.user.Username
+import dog.snow.androidrecruittest.data.model.type.common.UId
+import dog.snow.androidrecruittest.data.model.type.common.Title
+import dog.snow.androidrecruittest.data.model.type.photo.Url
+import dog.snow.androidrecruittest.data.model.type.user.Email
+import dog.snow.androidrecruittest.data.model.type.user.Phone
+import dog.snow.androidrecruittest.data.model.type.user.Username
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

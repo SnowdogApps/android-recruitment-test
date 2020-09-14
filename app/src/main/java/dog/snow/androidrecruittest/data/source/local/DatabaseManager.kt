@@ -1,10 +1,6 @@
 package dog.snow.androidrecruittest.data.source.local
 
-import dog.snow.androidrecruittest.data.model.album.RawAlbum
-import dog.snow.androidrecruittest.data.model.album.RawAlbum_
-import dog.snow.androidrecruittest.data.model.photo.RawPhoto
-import dog.snow.androidrecruittest.data.model.user.RawUser
-import dog.snow.androidrecruittest.data.model.user.RawUser_
+import dog.snow.androidrecruittest.data.model.raw.*
 import io.objectbox.Box
 import javax.inject.Inject
 

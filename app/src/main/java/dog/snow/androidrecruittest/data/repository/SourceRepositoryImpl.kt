@@ -1,16 +1,12 @@
 package dog.snow.androidrecruittest.data.repository
 
-import dog.snow.androidrecruittest.data.model.album.RawAlbum
-import dog.snow.androidrecruittest.data.model.album.RawAlbum_
-import dog.snow.androidrecruittest.data.model.photo.RawPhoto
-import dog.snow.androidrecruittest.data.model.user.RawUser
-import dog.snow.androidrecruittest.data.model.user.RawUser_
+import dog.snow.androidrecruittest.data.model.raw.RawAlbum
+import dog.snow.androidrecruittest.data.model.raw.RawPhoto
 import dog.snow.androidrecruittest.data.source.local.DatabaseManager
 import dog.snow.androidrecruittest.data.source.remote.Resource
 import dog.snow.androidrecruittest.data.source.remote.service.AlbumService
 import dog.snow.androidrecruittest.data.source.remote.service.PhotoService
 import dog.snow.androidrecruittest.data.source.remote.service.UserService
-import io.objectbox.Box
 import io.reactivex.Flowable
 import io.reactivex.Single
 
@@ -25,7 +21,6 @@ class SourceRepositoryImpl @Inject constructor(
     private val albumService: AlbumService,
     private val userService: UserService,
     private val dbManager: DatabaseManager
-
 ) : SourceRepository {
 
     override fun pullData(): Single<out Resource<Void>> = pullPhotos()

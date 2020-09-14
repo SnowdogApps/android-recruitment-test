@@ -16,7 +16,7 @@ class ListAdapter(private val onClick: (item: ListItem, position: Int, view: Vie
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
         return ViewHolder(
             itemView,
             onClick

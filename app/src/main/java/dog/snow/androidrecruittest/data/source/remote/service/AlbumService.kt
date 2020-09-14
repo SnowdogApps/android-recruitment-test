@@ -1,7 +1,7 @@
 package dog.snow.androidrecruittest.data.source.remote.service
 
-import dog.snow.androidrecruittest.data.model.album.RawAlbum
-import dog.snow.androidrecruittest.data.model.common.UId
+import dog.snow.androidrecruittest.data.model.raw.RawAlbum
+import dog.snow.androidrecruittest.data.model.type.common.UId
 import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Path

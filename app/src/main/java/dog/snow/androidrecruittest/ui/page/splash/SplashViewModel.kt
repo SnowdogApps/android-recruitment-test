@@ -6,22 +6,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dog.snow.androidrecruittest.data.repository.SourceRepository
 import dog.snow.androidrecruittest.data.source.remote.Resource
+import dog.snow.androidrecruittest.ui.base.BaseViewModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(
     private val sourceRepository: SourceRepository
-) : ViewModel() {
+) : BaseViewModel() {
     private val _fetchDataState = MutableLiveData<Resource<Void>>()
     val fetchDataState: LiveData<Resource<Void>> get() = _fetchDataState
 
     init {
         fetchData()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        disposable.clear() // TODO: add to base class
     }
 
     fun fetchData() {
@@ -43,7 +39,5 @@ class SplashViewModel @Inject constructor(
 
     companion object {
         private val TAG = SplashViewModel::class.simpleName
-        private val disposable: CompositeDisposable =
-            CompositeDisposable() //TODO: add to base class
     }
 }

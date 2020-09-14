@@ -1,19 +1,16 @@
 package dog.snow.androidrecruittest.utils
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import dog.snow.androidrecruittest.data.model.address.*
-import dog.snow.androidrecruittest.data.model.common.Name
-import dog.snow.androidrecruittest.data.model.common.Title
-import dog.snow.androidrecruittest.data.model.common.UId
-import dog.snow.androidrecruittest.data.model.company.Bs
-import dog.snow.androidrecruittest.data.model.company.CatchPhrase
-import dog.snow.androidrecruittest.data.model.company.RawCompany
-import dog.snow.androidrecruittest.data.model.geolocation.Coordinate
-import dog.snow.androidrecruittest.data.model.photo.Url
-import dog.snow.androidrecruittest.data.model.user.Email
-import dog.snow.androidrecruittest.data.model.user.Phone
-import dog.snow.androidrecruittest.data.model.user.Username
-import dog.snow.androidrecruittest.data.model.user.Website
+import dog.snow.androidrecruittest.data.model.raw.RawAddress
+import dog.snow.androidrecruittest.data.model.type.common.Name
+import dog.snow.androidrecruittest.data.model.type.common.Title
+import dog.snow.androidrecruittest.data.model.type.common.UId
+import dog.snow.androidrecruittest.data.model.raw.RawCompany
+import dog.snow.androidrecruittest.data.model.type.photo.Url
+import dog.snow.androidrecruittest.data.model.type.user.Email
+import dog.snow.androidrecruittest.data.model.type.user.Phone
+import dog.snow.androidrecruittest.data.model.type.user.Username
+import dog.snow.androidrecruittest.data.model.type.user.Website
 import io.objectbox.converter.PropertyConverter
 
 object Converters {
