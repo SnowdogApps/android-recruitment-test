@@ -1,7 +1,13 @@
 package dog.snow.androidrecruittest.repository.service
 
 object DbConstans {
+    interface BundleArgs {
+        companion object {
 
+            const val LIST_ITEM = "listItem"
+            const val TRANSITION = "transition"
+        }
+    }
     const val ID = "id"
     const val USER_ID = "user_id"
     const val TITLE = "title"
