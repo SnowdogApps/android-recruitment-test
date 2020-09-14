@@ -19,10 +19,10 @@ data class RawAlbum(
     var id: Long = 0,
     @Unique
     @JsonProperty("id")
-    @Convert(converter = Converters.UID::class, dbType = Int::class)
+    @Convert(converter = Converters.UID::class, dbType = Long::class)
     val uId: UId,
     @JsonProperty("userId")
-    @Convert(converter = Converters.UID::class, dbType = Int::class)
+    @Convert(converter = Converters.UID::class, dbType = Long::class)
     val userUId: UId,
     @JsonProperty("title")
     @Convert(converter = Converters.TITLE::class, dbType = String::class)

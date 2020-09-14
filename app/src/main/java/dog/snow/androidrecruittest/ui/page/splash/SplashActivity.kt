@@ -2,7 +2,6 @@ package dog.snow.androidrecruittest.ui.page.splash
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import dagger.android.AndroidInjection
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.data.source.remote.Resource
@@ -24,13 +23,12 @@ class SplashActivity : BaseActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
-        setupViewModel()
+        setupObservers()
     }
 
     /** Utils. */
 
-    override fun setupViewModel() {
-        //splashViewModel = ViewModelProvider(this, viewModelFactory)[SplashViewModel::class.java]
+    private fun setupObservers() {
         splashViewModel.fetchDataState.subscribe(this) {
             setLoadingView(false)
             when (it) {

@@ -22,10 +22,10 @@ data class RawPhoto(
     var id: Long = 0,
     @Unique
     @JsonProperty("id")
-    @Convert(converter = Converters.UID::class, dbType = Int::class)
+    @Convert(converter = Converters.UID::class, dbType = Long::class)
     val uId: UId,
     @JsonProperty("albumId")
-    @Convert(converter = Converters.UID::class, dbType = Int::class)
+    @Convert(converter = Converters.UID::class, dbType = Long::class)
     val albumUId: dog.snow.androidrecruittest.data.model.type.common.UId,
     @JsonProperty("title")
     @Convert(converter = Converters.TITLE::class, dbType = String::class)

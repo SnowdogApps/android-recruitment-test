@@ -14,6 +14,4 @@ abstract class BaseActivity: AppCompatActivity() {
         startActivity(Intent(this, direction))
         finish()
     }
-
-    protected abstract fun setupViewModel()
 }

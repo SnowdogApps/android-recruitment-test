@@ -26,7 +26,7 @@ data class RawUser(
     var id: Long = 0,
     @Unique
     @JsonProperty("id")
-    @Convert(converter = Converters.UID::class, dbType = Int::class)
+    @Convert(converter = Converters.UID::class, dbType = Long::class)
     val uId: UId,
     @JsonProperty("name")
     @Convert(converter = Converters.NAME::class, dbType = String::class)

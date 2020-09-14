@@ -13,7 +13,7 @@ class SplashViewModelModule {
     @Provides
     fun provideSplashViewModel(activity: SplashActivity, factory: ViewModelFactory): SplashViewModel {
         Log.i(TAG, "Provide SplashViewModel.")
-        return ViewModelProvider(activity, factory)[SplashViewModel::class.java]
+        return ViewModelProvider(activity.viewModelStore, factory)[SplashViewModel::class.java]
     }
 
     companion object {

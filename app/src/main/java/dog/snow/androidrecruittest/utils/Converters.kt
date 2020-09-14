@@ -15,7 +15,7 @@ import io.objectbox.converter.PropertyConverter
 
 object Converters {
     private const val NO_STRING = ""
-    private const val NO_INT = 0L
+    private const val NO_LONG = 0L
     class WEBSITE : PropertyConverter<Website, String> {
         override fun convertToDatabaseValue(entityProperty: Website?): String = entityProperty?.value ?: NO_STRING
         override fun convertToEntityProperty(databaseValue: String?): Website = Website(databaseValue ?: NO_STRING)
@@ -53,8 +53,8 @@ object Converters {
     }
 
     class UID : PropertyConverter<UId, Long> {
-        override fun convertToDatabaseValue(entityProperty: UId?): Long = entityProperty?.value ?: NO_INT
-        override fun convertToEntityProperty(databaseValue: Long?): UId = UId(databaseValue ?: NO_INT)
+        override fun convertToDatabaseValue(entityProperty: UId?): Long = entityProperty?.value ?: NO_LONG
+        override fun convertToEntityProperty(databaseValue: Long?): UId = UId(databaseValue ?: NO_LONG)
     }
 
     class ADDRESS : PropertyConverter<RawAddress, String> {

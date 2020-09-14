@@ -11,6 +11,7 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.toFlowable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -30,20 +31,21 @@ class SourceRepositoryImpl @Inject constructor(
         .map { Resource.Success<Void>(null) }
         .observeOn(AndroidSchedulers.mainThread())
 
+    /** Utils. */
 
     private fun pullPhotos() = photoService.fetchPhotos(PHOTO_LIMIT)
         .subscribeOn(Schedulers.io())
         .map {
             dbManager.putPhotos(it)
             it
-        }
+        }.map { photos -> photos.distinctBy { it.albumUId } }
 
-    private fun pullAlbums(photos: List<RawPhoto>) = Flowable.fromIterable(photos.distinctBy { it.albumUId })
+    private fun pullAlbums(photos: List<RawPhoto>) = photos.toFlowable()
         .flatMap { albumService.fetchAlbum(it.albumUId) }
         .map {
             dbManager.putAlbum(it)
             it
-        }
+        }.distinct { it.userUId }
 
     private fun pullUsers(album: RawAlbum) = userService.fetchUser(album.userUId)
         .map {

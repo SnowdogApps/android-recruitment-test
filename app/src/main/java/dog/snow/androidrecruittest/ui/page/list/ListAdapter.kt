@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dog.snow.androidrecruittest.R
+import dog.snow.androidrecruittest.databinding.ItemListBinding
 import dog.snow.androidrecruittest.ui.model.ListItem
 
 class ListAdapter(private val onClick: (item: ListItem, position: Int, view: View) -> Unit) :
@@ -16,28 +18,26 @@ class ListAdapter(private val onClick: (item: ListItem, position: Int, view: Vie
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
-        return ViewHolder(
-            itemView,
-            onClick
-        )
+            ItemListBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        return ViewHolder(itemView, onClick)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 
-    class ViewHolder(
-        itemView: View,
+    inner class ViewHolder(
+        private val binding: ItemListBinding,
         private val onClick: (item: ListItem, position: Int, view: View) -> Unit
     ) :
-        RecyclerView.ViewHolder(itemView) {
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListItem) = with(itemView) {
-            val ivThumb: ImageView = findViewById(R.id.iv_thumb)
-            val tvTitle: TextView = findViewById(R.id.tv_photo_title)
-            val tvAlbumTitle: TextView = findViewById(R.id.tv_album_title)
-            tvTitle.text = item.title.value
-            tvAlbumTitle.text = item.albumTitle.value
-            //TODO: display item.thumbnailUrl in ivThumb
+            binding. apply {
+                listItem = item
+                binding.executePendingBindings()
+            }
             setOnClickListener { onClick(item, adapterPosition, this) }
         }
     }
@@ -45,7 +45,7 @@ class ListAdapter(private val onClick: (item: ListItem, position: Int, view: Vie
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListItem>() {
             override fun areItemsTheSame(oldItem: ListItem, newItem: ListItem): Boolean =
-                oldItem.UId == newItem.UId
+                oldItem.uId.value == newItem.uId.value
 
             override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean =
                 oldItem == newItem
