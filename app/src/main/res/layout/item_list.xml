@@ -26,6 +26,7 @@
 
             <ImageView
                 android:id="@+id/iv_thumb"
+                android:transitionName="@string/avatar"
                 android:layout_width="@dimen/thumb_size"
                 android:layout_height="@dimen/thumb_size"
                 android:contentDescription="@null"

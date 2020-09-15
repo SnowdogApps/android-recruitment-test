@@ -1,16 +1,20 @@
 package dog.snow.androidrecruittest.di.module.list
 
 import android.util.Log
+import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import dagger.Module
 import dagger.Provides
+import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.ui.common.view_model.ViewModelFactory
 import dog.snow.androidrecruittest.ui.page.list.ListAdapter
 import dog.snow.androidrecruittest.ui.page.list.ListFragment
 import dog.snow.androidrecruittest.ui.page.list.ListFragmentDirections
 
 import dog.snow.androidrecruittest.ui.page.list.ListViewModel
+import kotlinx.android.synthetic.main.item_list.view.*
 
 @Module
 class ListFragmentInjectionModule {
@@ -22,9 +26,12 @@ class ListFragmentInjectionModule {
     }
 
     @Provides
-    fun provideListAdapter(fragment: ListFragment): ListAdapter = ListAdapter { item, _, _ ->
+    fun provideListAdapter(fragment: ListFragment): ListAdapter = ListAdapter { item, _, view ->
         val action = ListFragmentDirections.actionListFragmentToDetailsFragment(item.uId)
-        fragment.findNavController().navigate(action)
+        val extras = FragmentNavigatorExtras(
+            view.findViewById<ImageView>(R.id.iv_thumb) to item.uId.toString()
+        )
+        fragment.findNavController().navigate(action, extras)
     }
 
     companion object {

@@ -14,5 +14,6 @@
     <!-- Nav graph. -->
     <string name="list_items_label">List items</string>
     <string name="detail_label">Detail</string>
+    <string name="avatar">avatar</string>
 
 </resources>

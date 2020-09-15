@@ -57,6 +57,7 @@ class ListAdapter(private val onClick: (item: ListItem, position: Int, view: Vie
         fun bind(item: ListItem) = with(itemView) {
             binding.apply {
                 listItem = item
+                ivThumb.transitionName = item.uId.toString()
                 binding.executePendingBindings()
             }
             setOnClickListener { onClick(item, adapterPosition, this) }
