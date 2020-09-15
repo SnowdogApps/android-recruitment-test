@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.AndroidSupportInjection
 import dog.snow.androidrecruittest.databinding.FragmentListBinding
+import dog.snow.androidrecruittest.ui.common.rx.RxTextWatcher
 
 import dog.snow.androidrecruittest.utils.subscribe
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class ListFragment : Fragment() {
@@ -19,6 +20,8 @@ class ListFragment : Fragment() {
     @Inject
     lateinit var listAdapter: ListAdapter
     private lateinit var binding: FragmentListBinding
+
+    private lateinit var searchListenerDisposable: Disposable
 
 
     override fun onAttach(context: Context) {
@@ -41,13 +44,26 @@ class ListFragment : Fragment() {
         setupObservers()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        clearViews()
+    }
+
     /** Utils. */
 
     private fun setupViews() {
         binding.rvItems.apply { adapter = listAdapter }
+        searchListenerDisposable = RxTextWatcher.fromView(binding.layoutSearch.etSearch)
+            .subscribe {
+                listAdapter.filter(it)
+            }
+    }
+
+    private fun clearViews() {
+        searchListenerDisposable.dispose()
     }
 
     private fun setupObservers() {
-        listViewModel.listItems.subscribe(viewLifecycleOwner) { listAdapter.submitList(it) }
+        listViewModel.listItems.subscribe(viewLifecycleOwner) { listAdapter.modifyList(it) }
     }
 }

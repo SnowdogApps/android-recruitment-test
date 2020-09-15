@@ -23,7 +23,8 @@
             tools:listitem="@layout/item_list"
             tools:visibility="visible" />
 
-        <include layout="@layout/layout_search" />
+        <include layout="@layout/layout_search"
+            android:id="@+id/layout_search"/>
 
         <include
             layout="@layout/layout_empty_view"
