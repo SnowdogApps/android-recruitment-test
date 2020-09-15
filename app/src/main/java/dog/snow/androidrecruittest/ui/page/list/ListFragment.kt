@@ -56,6 +56,7 @@ class ListFragment : Fragment() {
         searchListenerDisposable = RxTextWatcher.fromView(binding.layoutSearch.etSearch)
             .subscribe {
                 listAdapter.filter(it)
+                displayNoResults(shouldDisplay = listAdapter.currentList.isEmpty())
             }
     }
 
@@ -64,6 +65,13 @@ class ListFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        listViewModel.listItems.subscribe(viewLifecycleOwner) { listAdapter.modifyList(it) }
+        listViewModel.listItems.subscribe(viewLifecycleOwner) {
+            listAdapter.modifyList(it)
+            displayNoResults(shouldDisplay = it.isEmpty())
+        }
+    }
+
+    private fun displayNoResults(shouldDisplay: Boolean) {
+        binding.layoutEmptyView.tvEmpty.visibility = if(shouldDisplay) View.VISIBLE else View.GONE
     }
 }

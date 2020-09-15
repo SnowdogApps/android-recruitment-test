@@ -10,43 +10,53 @@
             type="dog.snow.androidrecruittest.ui.model.ListItem" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
-        android:padding="@dimen/margin_normal">
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginBottom="@dimen/margin_small"
+        style="@style/CardView.MyCardView">
 
-        <ImageView
-            android:id="@+id/iv_thumb"
-            android:layout_width="@dimen/thumb_size"
-            android:layout_height="@dimen/thumb_size"
-            android:contentDescription="@null"
-            android:scaleType="centerCrop"
-            android:src="?attr/colorPrimary"
-            bind:avatar="@{listItem.thumbnailUrl}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_photo_title"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:text="@{listItem.albumTitle.value}"
-            app:layout_constraintStart_toEndOf="@+id/iv_thumb"
-            app:layout_constraintTop_toTopOf="@+id/iv_thumb"
-            tools:text="Name" />
+            android:background="@color/light_background_color"
+            android:padding="@dimen/margin_normal">
 
-        <TextView
-            android:id="@+id/tv_album_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="@{listItem.title.value}"
-            app:layout_constraintStart_toStartOf="@+id/tv_photo_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_photo_title"
-            tools:text="Description" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_thumb"
+                android:layout_width="@dimen/thumb_size"
+                android:layout_height="@dimen/thumb_size"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="?attr/colorPrimary"
+                bind:avatar="@{listItem.thumbnailUrl}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_photo_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@{listItem.albumTitle.value}"
+                app:layout_constraintStart_toEndOf="@+id/iv_thumb"
+                app:layout_constraintTop_toTopOf="@+id/iv_thumb"
+                tools:text="Name" />
+
+            <TextView
+                android:id="@+id/tv_album_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="@{listItem.title.value}"
+                app:layout_constraintStart_toStartOf="@+id/tv_photo_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_photo_title"
+                tools:text="Description" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </layout>

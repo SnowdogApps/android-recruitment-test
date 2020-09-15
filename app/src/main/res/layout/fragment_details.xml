@@ -10,77 +10,85 @@
             type="dog.snow.androidrecruittest.ui.model.Detail" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/margin_normal">
+        android:layout_height="wrap_content"
+        style="@style/CardView.MyCardView"
+        android:layout_margin="@dimen/margin_normal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/light_background_color"
+            android:padding="@dimen/margin_normal">
 
-        <ImageView
-            android:id="@+id/iv_photo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:contentDescription="@null"
-            android:scaleType="centerCrop"
-            android:src="?attr/colorPrimary"
-            bind:avatar="@{detail.url}"
-            app:layout_constraintDimensionRatio="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="?attr/colorPrimary"
+                bind:avatar="@{detail.url}"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_photo_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:text="@{detail.photoTitle.value}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_photo"
-            tools:text="Photo title" />
+            <TextView
+                android:id="@+id/tv_photo_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:text="@{detail.photoTitle.value}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_photo"
+                tools:text="Photo title" />
 
-        <TextView
-            android:id="@+id/tv_album_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="@{detail.albumTitle.value}"
-            app:layout_constraintStart_toStartOf="@+id/tv_photo_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_photo_title"
-            tools:text="Album title" />
+            <TextView
+                android:id="@+id/tv_album_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@{detail.albumTitle.value}"
+                app:layout_constraintStart_toStartOf="@+id/tv_photo_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_photo_title"
+                tools:text="Album title" />
 
-        <TextView
-            android:id="@+id/tv_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="@{detail.username.value}"
-            app:layout_constraintStart_toStartOf="@+id/tv_album_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_album_title"
-            tools:text="Username" />
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="@{detail.username.value}"
+                app:layout_constraintStart_toStartOf="@+id/tv_album_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_album_title"
+                tools:text="Username" />
 
-        <TextView
-            android:id="@+id/tv_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="@{detail.email.value}"
-            app:layout_constraintStart_toStartOf="@+id/tv_username"
-            app:layout_constraintTop_toBottomOf="@+id/tv_username"
-            tools:text="art@snow.dog" />
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textStyle="italic"
+                android:text="@{detail.email.value}"
+                app:layout_constraintStart_toStartOf="@+id/tv_username"
+                app:layout_constraintTop_toBottomOf="@+id/tv_username"
+                tools:text="art@snow.dog" />
 
-        <TextView
-            android:id="@+id/tv_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="@{detail.phone.value}"
-            app:layout_constraintStart_toStartOf="@+id/tv_email"
-            app:layout_constraintTop_toBottomOf="@+id/tv_email"
-            tools:text="123-456-789" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="@{detail.phone.value}"
+                app:layout_constraintStart_toStartOf="@+id/tv_email"
+                app:layout_constraintTop_toBottomOf="@+id/tv_email"
+                tools:text="123-456-789" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>
