@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Base.AppTheme" parent="@style/Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:background">@color/light_surface_color</item>
+    <style name="Base.AppTheme" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:background">@color/surface_color</item>
     </style>
 
     <style name="AppTheme" parent="Base.AppTheme">
-        <item name="colorPrimary">@color/light_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_primary_dark_color</item>
-        <item name="colorAccent">@color/light_accent_color</item>
-        <item name="colorError">@color/light_error_color</item>
-        <item name="android:windowBackground">@color/light_background_color</item>
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryDark">@color/primary_dark_color</item>
+        <item name="colorAccent">@color/accent_color</item>
+        <item name="colorError">@color/error_color</item>
+        <item name="android:windowBackground">@color/background_color</item>
         <item name="android:textViewStyle">@style/Base.Widget.MaterialComponents.TextView.BaseTextView</item>
     </style>
 

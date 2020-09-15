@@ -3,7 +3,7 @@
     <style name="Widget.AppTheme.AppBar" parent="@style/Widget.Design.AppBarLayout" />
 
     <style name="Widget.AppTheme.Banner" parent="@style/Widget.MaterialComponents.TextView" >
-        <item name="android:background">@color/light_accent_color</item>
+        <item name="android:background">@color/accent_color</item>
     </style>
 
     <style name="Base.Widget.MaterialComponents.TextView.BaseTextView">

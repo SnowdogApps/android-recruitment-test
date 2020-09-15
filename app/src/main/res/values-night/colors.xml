@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_color">#607d8b</color>
+    <color name="primary_dark_color">#34515e</color>
+    <color name="accent_color">#FF9800</color>
+    <color name="error_color">#FF0000</color>
+    <color name="background_color">#424242</color>
+    <color name="surface_color">#1b1b1b</color>
+    <color name="splash_bg">@color/sd_color_black</color>
+
+    <color name="sd_color_white">#F6FAFD</color>
+    <color name="sd_color_black">#181718</color>
+    <color name="sd_color_white_mask">#F4F6FAFD</color>
+    <color name="sd_color_black_mask">#F4181718</color>
+</resources>
