@@ -1,9 +1,21 @@
 package dog.snow.androidrecruittest.utils
 
+import android.content.Intent
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.ui.page.splash.SplashActivity
+
+fun AppCompatActivity.redirectToActivity(direction: Class<out AppCompatActivity>) {
+    startActivity(Intent(this, direction))
+    finish()
+}
+
+fun AppCompatActivity.startActivity(direction: Class<out AppCompatActivity>) {
+    startActivity(Intent(this, direction))
+    finish()
+}
 
 fun SplashActivity.showError(errorMessage: String?) {
     MaterialAlertDialogBuilder(this)

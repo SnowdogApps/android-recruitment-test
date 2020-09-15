@@ -1,20 +1,21 @@
 package dog.snow.androidrecruittest.ui.page.splash
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import dagger.android.AndroidInjection
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.data.source.remote.Resource
 import dog.snow.androidrecruittest.databinding.ActivitySplashBinding
-import dog.snow.androidrecruittest.ui.base.BaseActivity
 import dog.snow.androidrecruittest.ui.page.main.MainActivity
+import dog.snow.androidrecruittest.utils.redirectToActivity
 import dog.snow.androidrecruittest.utils.setLoadingView
 import dog.snow.androidrecruittest.utils.showError
 import dog.snow.androidrecruittest.utils.subscribe
 import javax.inject.Inject
 
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : AppCompatActivity() {
     @Inject
     lateinit var splashViewModel: SplashViewModel
     lateinit var binding: ActivitySplashBinding

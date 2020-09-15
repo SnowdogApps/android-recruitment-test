@@ -20,7 +20,6 @@ class ListFragment : Fragment() {
     @Inject
     lateinit var listAdapter: ListAdapter
     private lateinit var binding: FragmentListBinding
-
     private lateinit var searchListenerDisposable: Disposable
 
 
